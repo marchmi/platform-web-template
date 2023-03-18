@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import installElementPlus from './plugins/element'
+import { setupStore } from '@/store'
 import router, { setupRouter } from './router'
 
 async function bootstrap() {
@@ -9,6 +10,9 @@ async function bootstrap() {
 
   // 初始化element  
   installElementPlus(app)
+
+  // 注册pinia
+  setupStore(app)
 
   // 挂载路由
   await setupRouter(app)
