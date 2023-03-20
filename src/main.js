@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-import installElementPlus from './plugins/element'
+// import installUI from './plugins/element'
+import installUI from './plugins/tdesign'
 import { setupStore } from '@/store'
 import router, { setupRouter } from './router'
 
@@ -8,8 +9,8 @@ async function bootstrap() {
 
   const app = createApp(App)
 
-  // 初始化element  
-  installElementPlus(app)
+  // 初始化UI  
+  installUI(app)
 
   // 注册pinia
   setupStore(app)
