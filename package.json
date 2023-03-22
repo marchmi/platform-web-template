@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "element-plus": "^2.3.0",
+    "less": "^4.1.3",
+    "less-loader": "^11.1.0",
     "pinia": "^2.0.33",
     "tdesign-vue-next": "^1.2.1",
     "vue": "^3.2.47",

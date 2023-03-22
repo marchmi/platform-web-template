@@ -9,7 +9,10 @@ import {
   Input,
   Radio,
   Table,
-  Form
+  Form,
+  Menu,
+  MenuItem,
+  Submenu
 } from 'tdesign-vue-next'
 import 'tdesign-vue-next/es/style/index.css';
 
@@ -18,7 +21,10 @@ const coms = [
   Input,
   Radio,
   Table,
-  Form
+  Form,
+  Menu,
+  MenuItem,
+  Submenu
 ]
 
 export default (app) => {

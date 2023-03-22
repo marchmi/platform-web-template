@@ -4,7 +4,6 @@ import App from './App.vue'
 import installUI from './plugins/tdesign'
 import { setupStore } from '@/store'
 import router, { setupRouter } from './router'
-
 async function bootstrap() {
 
   const app = createApp(App)

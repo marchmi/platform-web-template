@@ -5,5 +5,6 @@
   <router-view />
 </template>
 
-<style scoped>
+<style>
+ @import "./assets/css/reset.css";
 </style>
