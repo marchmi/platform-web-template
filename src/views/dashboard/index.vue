@@ -1,7 +1,69 @@
 <template>
-  <div class="dashboard">
-    dashboard
-  </div>
+  <app-main>
+    <template #content>
+      <div class="dashboard">
+        <p>dashoboard</p>
+        <p>dashoboard</p>
+        <p>dashoboard</p>
+        <p>dashoboard</p>
+        <p>dashoboard</p>
+        <p>dashoboard</p>
+        <p>dashoboard</p>
+        <p>dashoboard</p>
+        <p>dashoboard</p>
+        <p>dashoboard</p>
+        <p>dashoboard</p>
+        <p>dashoboard</p>
+        <p>dashoboard</p>
+        <p>dashoboard</p>
+        <p>dashoboard</p>
+        <p>dashoboard</p>
+        <p>dashoboard</p>
+        <p>dashoboard</p>
+        <p>dashoboard</p>
+        <p>dashoboard</p>
+        <p>dashoboard</p>
+        <p>dashoboard</p>
+        <p>dashoboard</p>
+        <p>dashoboard</p>
+        <p>dashoboard</p>
+        <p>dashoboard</p>
+        <p>dashoboard</p>
+        <p>dashoboard</p>
+        <p>dashoboard</p>
+        <p>dashoboard</p>
+        <p>dashoboard</p>
+        <p>dashoboard</p>
+        <p>dashoboard</p>
+        <p>dashoboard</p>
+        <p>dashoboard</p>
+        <p>dashoboard</p>
+        <p>dashoboard</p>
+        <p>dashoboard</p>
+        <p>dashoboard</p>
+        <p>dashoboard</p>
+        <p>dashoboard</p>
+        <p>dashoboard</p>
+        <p>dashoboard</p>
+        <p>dashoboard</p>
+        <p>dashoboard</p>
+        <p>dashoboard</p>
+        <p>dashoboard</p>
+        <p>dashoboard</p>
+        <p>dashoboard</p>
+        <p>dashoboard</p>
+        <p>dashoboard</p>
+        <p>dashoboard</p>
+        <p>dashoboard</p>
+        <p>dashoboard</p>
+        <p>dashoboard</p>
+        <p>dashoboard</p>
+        <p>dashoboard</p>
+        <p>dashoboard</p>
+      </div>
+    </template>
+  </app-main>
 </template>
 <script setup>
+import AppMain from '@/components/AppMain.vue'
 </script>
