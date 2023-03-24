@@ -9,7 +9,11 @@ import {
   ElInput,
   ElRadio,
   ElTable,
-  ElForm
+  ElForm,
+  ElMenu,
+  ElMenuItem,
+  ElSubMenu,
+  ElScrollbar
 } from 'element-plus'
 import 'element-plus/dist/index.css'
 
@@ -18,7 +22,11 @@ const coms = [
   ElInput,
   ElRadio,
   ElTable,
-  ElForm
+  ElForm,
+  ElMenu,
+  ElMenuItem,
+  ElSubMenu,
+  ElScrollbar
 ]
 
 export default (app) => {

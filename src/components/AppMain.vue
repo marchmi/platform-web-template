@@ -1,11 +1,11 @@
 <template>
   <div class="app-main">
-    <!-- <div class="container-shadow wrapper-shadow" v-if="showShadow"></div> -->
-    <!-- <el-scrollbar> -->
+    <div class="container-shadow wrapper-shadow" v-if="showShadow"></div>
+    <mi-scrollbar>
       <div :class="{'app-main-container': showShadow}">
         <slot name="content"></slot>
       </div>
-    <!-- </el-scrollbar> -->
+    </mi-scrollbar>
   </div>
 </template>
 <script>
@@ -22,12 +22,12 @@ export default {
 <style lang="less">
 .app-main {
   position: relative;
-  height: calc(100% - 20px);
+  height: calc(100% - 80px);
   &.detail {
     height: auto;
   }
   .container-shadow {
-    width: calc(100% - 40px);
+    width: calc(100% - 80px);
     background: #fff;
     border-radius: 4px;
     &.detail {

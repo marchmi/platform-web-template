@@ -21,6 +21,10 @@ import sideBar from './components/sideBar/Menu.vue'
     height: 100vh;
     display: flex;
     .layout-left{
+      // width: 240px;
+      height: 100vh;
+      padding: 0 5px 0 0;
+      background: #eee;
       .sidebar-container{
         height: 100%;
         overflow: hidden;
@@ -36,7 +40,7 @@ import sideBar from './components/sideBar/Menu.vue'
       .page-container{
         height: 100%;
         background: #fff;
-        overflow-y: scroll;
+        overflow-y: hidden;
       }
     }
   }

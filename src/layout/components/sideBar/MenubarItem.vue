@@ -1,6 +1,6 @@
 <template>
   <template v-if="item.index">
-    <mi-submenu v-if="item.subs?.length > 0" :value="item.index">
+    <mi-sub-menu v-if="item.subs?.length > 0" :index="item.index">
       <template #title>
         <span>{{ item.title }}</span>
       </template>
@@ -9,8 +9,8 @@
         :key="child.index"
         :menu-data="child">
       </menubar-item>
-    </mi-submenu>
-    <mi-menu-item v-else :value="item.index" :route="item">
+    </mi-sub-menu>
+    <mi-menu-item v-else :index="item.index">
       <span>{{ item.title }}</span>
     </mi-menu-item>
   </template>

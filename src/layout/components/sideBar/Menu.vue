@@ -1,16 +1,10 @@
 <template>
-  <div class="sidebar-container">
-    <mi-menu theme="dark" :defaultExpanded="defaultExpanded" :value="onRoutes" :collapsed="sidebar.collapse" @change="changeHandler">
-      <menubar-item v-for="menu in items" :key="menu.path" :menu-data="menu" />
-      <template #logo>
-        <img :width="sidebar.collapse ? 35 : 136" :src="iconUrl" alt="logo" />
-      </template>
-      <template #operations>
-        <mi-button class="t-demo-collapse-btn" variant="text" shape="square" @click="changeCollapsed">
-          <template #icon><ViewListIcon /></template>
-        </mi-button>
-      </template>
-    </mi-menu>
+  <div class="sidebar-container" :style="{width: sidebar.collapse?'':'240px'}">
+    <mi-scrollbar>
+      <mi-menu theme="dark" :router="true" :default-active="onRoutes" :collapse="sidebar.collapse" @change="changeHandler">
+        <menubar-item v-for="menu in items" :key="menu.path" :menu-data="menu" />
+      </mi-menu>
+    </mi-scrollbar>
   </div>
 </template>
 
@@ -31,10 +25,8 @@ export default defineComponent({
     const router = useRouter()
     const route = useRoute()
     const onRoutes = computed(() => {
+      console.log(route.path)
       return route.path
-    })
-    const defaultExpanded = computed(() => {
-      return [route.path]
     })
 
     const sidebar = useSidebarStore()
@@ -59,7 +51,6 @@ export default defineComponent({
       onRoutes,
       sidebar,
       iconUrl,
-      defaultExpanded,
       changeCollapsed,
       changeHandler
     }
