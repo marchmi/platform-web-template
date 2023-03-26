@@ -9,13 +9,22 @@ import {
   ElInput,
   ElRadio,
   ElTable,
+  ElTableColumn,
   ElForm,
   ElFormItem,
   ElIcon,
   ElMenu,
   ElMenuItem,
   ElSubMenu,
-  ElScrollbar
+  ElScrollbar,
+  ElCascader,
+  ElCheckboxGroup,
+  ElCheckbox,
+  ElDatePicker,
+  ElUpload,
+  ElSelect,
+  ElTag,
+  ElSwitch
 } from 'element-plus'
 import 'element-plus/dist/index.css'
 
@@ -24,13 +33,22 @@ const coms = [
   ElInput,
   ElRadio,
   ElTable,
+  ElTableColumn,
   ElForm,
   ElFormItem,
   ElIcon,
   ElMenu,
   ElMenuItem,
   ElSubMenu,
-  ElScrollbar
+  ElScrollbar,
+  ElCascader,
+  ElCheckboxGroup,
+  ElCheckbox,
+  ElDatePicker,
+  ElUpload,
+  ElSelect,
+  ElTag,
+  ElSwitch
 ]
 
 export default (app) => {

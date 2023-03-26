@@ -1,6 +1,7 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import installUI from './plugins/element'
+import setupDirective from '@/directives'
 // import installUI from './plugins/tdesign'
 import { setupStore } from '@/store'
 import router, { setupRouter } from './router'
@@ -13,6 +14,9 @@ async function bootstrap() {
 
   // 注册pinia
   setupStore(app)
+
+  // 注册全局指令
+  setupDirective(app)
 
   // 挂载路由
   await setupRouter(app)
