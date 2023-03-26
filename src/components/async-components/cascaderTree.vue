@@ -1,0 +1,46 @@
+<template>
+  <div>
+    <el-cascader v-model="val" :options="options" :props="CascaderProps" v-bind="$attrs">
+    </el-cascader>
+  </div>
+</template>
+<script>
+export default {
+  props: {
+    data: {
+      type: [String, Number],
+      default: ''
+    },
+
+    CascaderProps: {
+      type: [Object],
+      default: () => {
+        return {
+          label: 'name',
+          value: 'id'
+        }
+      }
+    },
+
+    options: {
+      type: [Array, String, Object],
+      default: () => {
+        return []
+      }
+    }
+  },
+
+  methods: {},
+
+  computed: {
+    val: {
+      get () {
+        return this.data
+      },
+      set (value) {
+        this.$emit('update:data', value)
+      }
+    }
+  }
+}
+</script>
