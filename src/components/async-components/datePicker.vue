@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-date-picker
+    <mi-date-picker
       v-model="val"
       type="date"
       v-bind="$attrs"

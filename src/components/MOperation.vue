@@ -7,14 +7,14 @@
       <template v-else>
         <!--  operation.isShow(row) operation.disabled(row) operation.handler(row) 表格中使用组件时，row为传递给组件的当前行的数据,在筛选条件中使用时，row是当前筛选条件的值-->
         <!-- click事件添加stop修饰符，避免点击按钮时，触发row-click事件 -->
-        <el-button 
+        <mi-button 
           v-bind="operation.props"
           v-if="((row)=>{ return operation.isShow ? operation.isShow(row): true })(row)" 
           :disabled="((row)=>{ return operation.disabled ? operation.disabled(row): false})(row)" 
           @click.stop="operation.handler(row, compRef)"
           v-permission="operation.permission">
           {{operation.label}}
-        </el-button>
+        </mi-button>
       </template>
     </template>
   </div>

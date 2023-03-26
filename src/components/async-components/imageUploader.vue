@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-upload
+    <mi-upload
       :action="useOss?ossUploadUrl:minioUploadUrl"
       :data="useOss?dataObj:null"
       list-type="picture"
@@ -10,8 +10,8 @@
       :on-remove="handleRemove"
       :on-success="handleUploadSuccess"
       :on-preview="handlePreview">
-      <el-button size="small" type="primary">点击上传</el-button>
-    </el-upload>
+      <mi-button size="small" type="primary">点击上传</mi-button>
+    </mi-upload>
   </div>
 </template>
 <script>

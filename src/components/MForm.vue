@@ -1,7 +1,7 @@
 <template>
   <div class="form">
-    <el-form ref="dataForm" class="data-form" :model="dataFormParams" label-width="120px" flex>
-      <el-form-item v-for="field in formFields" :prop="field.key" :key="field.key" :label="field.label">
+    <mi-form ref="dataForm" class="data-form" :model="dataFormParams" label-width="120px" flex>
+      <mi-form-item v-for="field in formFields" :prop="field.key" :key="field.key" :label="field.label">
         <template v-if="$slots[field.key]">
           <slot :name="field.key"></slot>
         </template>
@@ -13,8 +13,8 @@
             >
           </dynamic-view-loader>
         </template>
-      </el-form-item>
-    </el-form>
+      </mi-form-item>
+    </mi-form>
     <!-- 表单操作按钮 -->
     <m-operation :operations="operations" :row="dataFormParams" :compRef="dataForm"></m-operation>
   </div>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-input v-model.trim="val" clearable v-bind="$attrs" />
+    <mi-input v-model.trim="val" clearable v-bind="$attrs" />
   </div>
 </template>
 <script>

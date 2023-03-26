@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-input
+    <mi-input
       maxlength="100"
       show-word-limit
       resize="none"

@@ -1,11 +1,11 @@
 <template>
   <div>
-    <el-checkbox-group  v-model="val" v-bind="$attrs">
-      <el-checkbox
+    <mi-checkbox-group  v-model="val" v-bind="$attrs">
+      <mi-checkbox
         v-for="item in options"
         :key="item[labelKey]"
-        :label="item[valueKey]">{{item[labelKey]}}</el-checkbox>
-    </el-checkbox-group>
+        :label="item[valueKey]">{{item[labelKey]}}</mi-checkbox>
+    </mi-checkbox-group>
   </div>
 </template>
 <script>

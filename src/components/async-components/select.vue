@@ -1,15 +1,15 @@
 <template>
   <div>
-    <el-select v-model="val" v-bind="$attrs">
-      <el-option
+    <mi-select v-model="val" v-bind="$attrs">
+      <mi-option
         v-for="item in options"
         :key="item[labelKey]"
         :label="item[labelKey]"
         :value="item[valueKey]"
         v-bind="$attrs"
       >
-      </el-option>
-    </el-select>
+      </mi-option>
+    </mi-select>
   </div>
 </template>
 <script>

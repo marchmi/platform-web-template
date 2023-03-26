@@ -1,7 +1,7 @@
 <template>
   <div>
-    <el-cascader v-model="val" :options="options" :props="CascaderProps" v-bind="$attrs">
-    </el-cascader>
+    <mi-cascader v-model="val" :options="options" :props="CascaderProps" v-bind="$attrs">
+    </mi-cascader>
   </div>
 </template>
 <script>

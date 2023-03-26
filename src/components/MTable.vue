@@ -1,5 +1,5 @@
 <template>
-  <el-table 
+  <mi-table 
     ref="table"
     :data="tableData"
     v-bind="attrs"
@@ -7,8 +7,8 @@
     @selection-change="handleSelectionChange"
     style="width: 100%"
     >
-    <el-table-column v-if="attrs.useSelection" type="selection" width="55" />
-    <el-table-column
+    <mi-table-column v-if="attrs.useSelection" type="selection" width="55" />
+    <mi-table-column
       v-for="(field) in columns"
       :key="field.key"
       :prop="field.key"
@@ -18,7 +18,7 @@
     >
       <template #default="{ row }">
         <template v-if="field.key==='useRadio'">
-          <el-radio v-model="attrs.currentSelection" :label="row[attrs.rowKey]" size="large">&nbsp;</el-radio>
+          <mi-radio v-model="attrs.currentSelection" :label="row[attrs.rowKey]" size="large">&nbsp;</mi-radio>
         </template>
         <!-- 使用插槽进行渲染 -->
         <template v-else-if="$slots[field.key]">
@@ -30,15 +30,15 @@
           <span>{{formatValue(row[field.key], field.format)}}</span>
         </template>
       </template>
-    </el-table-column>
+    </mi-table-column>
     <!-- 通过$slots中是否有operation插槽控制显示操作栏 -->
-    <el-table-column v-if="$slots.operation" :fixed="attrs.fixedOperationColumn" label="操作" :width="attrs.operation_width||120">
+    <mi-table-column v-if="$slots.operation" :fixed="attrs.fixedOperationColumn" label="操作" :width="attrs.operation_width||120">
       <template #default="{ row }">
         <slot name="operation" :row="row" :compRef="table">
         </slot>
       </template>
-    </el-table-column>
-  </el-table>
+    </mi-table-column>
+  </mi-table>
 </template>
 <script setup>
   import { formatValue } from '@/utils/index.js'

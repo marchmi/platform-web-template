@@ -1,5 +1,5 @@
 <template>
-  <el-pagination
+  <mi-pagination
     :total="pagination.total"
     v-model:current-page="pagination.pageNum"
     v-model:page-size="pagination.pageSize"
