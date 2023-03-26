@@ -1,7 +1,14 @@
 <template>
   <div class="sidebar-container" :style="{width: sidebar.collapse?'':'240px'}">
     <mi-scrollbar>
-      <mi-menu theme="dark" :router="true" :default-active="onRoutes" :collapse="sidebar.collapse" @change="changeHandler">
+      <mi-menu 
+        background-color="#545c64"
+        text-color="#fff"
+        active-text-color="#ffd04b"
+        :router="true" 
+        :default-active="onRoutes" 
+        :collapse="sidebar.collapse" 
+        @change="changeHandler">
         <menubar-item v-for="menu in items" :key="menu.path" :menu-data="menu" />
       </mi-menu>
     </mi-scrollbar>

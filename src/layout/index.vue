@@ -24,18 +24,20 @@ import sideBar from './components/sideBar/Menu.vue'
       // width: 240px;
       height: 100vh;
       padding: 0 5px 0 0;
-      background: #eee;
+      background: #545c64;
       .sidebar-container{
         height: 100%;
         overflow: hidden;
+      }
+      :deep(.el-menu){
+        border-right: none;
       }
     }
     .layout-right{
       flex: 1;
       .toolBar{
         height: 55px;
-        background: var(--td-gray-color-13);
-        border-bottom: 1px solid #4e4d4d;
+        background: #545c64;
       }
       .page-container{
         height: 100%;
