@@ -167,14 +167,14 @@
       handler: handleEdit,
       disabled: () => { return true },
       props: { // 其它的按钮控制属性
-        type: 'text'
+        link: true
       }
     },
     {
       label: '删除',
       handler: handleDelete,
       props: { // 其它的按钮控制属性
-        type: 'text'
+        link: true
       }
     }
   ]).operations)
@@ -199,14 +199,14 @@
       label: '查看商品',
       handler: handleViewProduct,
       props: { // 其它的按钮控制属性
-        type: 'text'
+        link: true
       }
     },
     {
       label: '移除商品',
       handler: handleTransferProduct,
       props: { // 其它的按钮控制属性
-        type: 'text'
+        link: true
       }
     }
   ]).operations)

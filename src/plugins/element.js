@@ -24,7 +24,9 @@ import {
   ElUpload,
   ElSelect,
   ElTag,
-  ElSwitch
+  ElSwitch,
+  ElPagination,
+  ElOption
 } from 'element-plus'
 import 'element-plus/dist/index.css'
 
@@ -48,7 +50,9 @@ const coms = [
   ElUpload,
   ElSelect,
   ElTag,
-  ElSwitch
+  ElSwitch,
+  ElPagination,
+  ElOption
 ]
 
 export default (app) => {

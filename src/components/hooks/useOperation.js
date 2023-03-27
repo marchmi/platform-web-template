@@ -20,7 +20,7 @@ const useOperation = (options = {}) => {
     collapse: false, // 是否折叠，默认超过三个操作按钮时，对操作栏进行折叠 boolean|number  to be developed
     props: { // 其他的按钮控制属性
       type: 'primary',
-      size: 'mini'
+      size: 'small'
     }
   }
 
