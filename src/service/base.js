@@ -69,7 +69,8 @@
  
  // 配置response拦截器
  axiosInstance.interceptors.response.use((response) => {
-   endLoading()
+   const { showLoading } = response.config
+   showLoading && endLoading()
    const { data: {code , data, message} } = response
    // 请求异常时的处理逻辑，responseType为arraybuffer时响应数据为二进制数据
    if (code!==200 && response.config.responseType !== 'arraybuffer') {
