@@ -2,64 +2,6 @@
   <app-main>
     <template #content>
       <div class="dashboard">
-        <p>dashoboard</p>
-        <p>dashoboard</p>
-        <p>dashoboard</p>
-        <p>dashoboard</p>
-        <p>dashoboard</p>
-        <p>dashoboard</p>
-        <p>dashoboard</p>
-        <p>dashoboard</p>
-        <p>dashoboard</p>
-        <p>dashoboard</p>
-        <p>dashoboard</p>
-        <p>dashoboard</p>
-        <p>dashoboard</p>
-        <p>dashoboard</p>
-        <p>dashoboard</p>
-        <p>dashoboard</p>
-        <p>dashoboard</p>
-        <p>dashoboard</p>
-        <p>dashoboard</p>
-        <p>dashoboard</p>
-        <p>dashoboard</p>
-        <p>dashoboard</p>
-        <p>dashoboard</p>
-        <p>dashoboard</p>
-        <p>dashoboard</p>
-        <p>dashoboard</p>
-        <p>dashoboard</p>
-        <p>dashoboard</p>
-        <p>dashoboard</p>
-        <p>dashoboard</p>
-        <p>dashoboard</p>
-        <p>dashoboard</p>
-        <p>dashoboard</p>
-        <p>dashoboard</p>
-        <p>dashoboard</p>
-        <p>dashoboard</p>
-        <p>dashoboard</p>
-        <p>dashoboard</p>
-        <p>dashoboard</p>
-        <p>dashoboard</p>
-        <p>dashoboard</p>
-        <p>dashoboard</p>
-        <p>dashoboard</p>
-        <p>dashoboard</p>
-        <p>dashoboard</p>
-        <p>dashoboard</p>
-        <p>dashoboard</p>
-        <p>dashoboard</p>
-        <p>dashoboard</p>
-        <p>dashoboard</p>
-        <p>dashoboard</p>
-        <p>dashoboard</p>
-        <p>dashoboard</p>
-        <p>dashoboard</p>
-        <p>dashoboard</p>
-        <p>dashoboard</p>
-        <p>dashoboard</p>
-        <p>dashoboard</p>
       </div>
     </template>
   </app-main>
@@ -67,3 +9,11 @@
 <script setup>
 import AppMain from '@/components/AppMain.vue'
 </script>
+<style lang="less" scoped>
+.dashboard{
+  width: 100%;
+  height: 80vh;
+  background-image: url(@/assets/img/dashboard-bg.jpg);
+  background-size: 100%;
+}
+</style>

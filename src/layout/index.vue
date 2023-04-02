@@ -15,7 +15,10 @@
         <theme></theme>
       </div>
       <div class="page-container-wrap">
-        <router-view>
+        <router-view v-slot="{ Component }">
+          <transition :name="'slide'">
+            <component :is="Component" />
+          </transition>
         </router-view>
       </div>
     </div>
@@ -121,6 +124,40 @@ onMounted(()=>{
       }
       .page-container-wrap{
         height: 100%;
+        position: relative;
+        .slide-enter-active {
+          position: absolute;
+          top: 0;
+          width: 100%;
+          transition: all 0.4s ease-in-out 0.2s;
+        }
+
+        .slide-leave-active {
+          position: absolute;
+          top: 0;
+          width: 100%;
+          transition: all 0.4s ease-in-out;
+        }
+
+        .slide-enter-to {
+          transform: translate3d(0, 0, 0);
+          opacity: 1;
+        }
+
+        .slide-enter-from {
+          transform: translate3d(-5%, 0, 0);
+          opacity: 0;
+        }
+
+        .slide-leave-to {
+          transform: translate3d(5%, 0, 0);
+          opacity: 0;
+        }
+
+        .slide-leave-from {
+          transform: translate3d(0, 0, 0);
+          opacity: 1;
+        }
       }
     }
   }
