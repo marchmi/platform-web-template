@@ -26,7 +26,11 @@ import {
   ElTag,
   ElSwitch,
   ElPagination,
-  ElOption
+  ElOption,
+  ElAvatar,
+  ElDropdown,
+  ElDropdownMenu,
+  ElDropdownItem
 } from 'element-plus'
 import 'element-plus/dist/index.css'
 
@@ -52,7 +56,11 @@ const coms = [
   ElTag,
   ElSwitch,
   ElPagination,
-  ElOption
+  ElOption,
+  ElAvatar,
+  ElDropdown,
+  ElDropdownMenu,
+  ElDropdownItem
 ]
 
 export default (app) => {

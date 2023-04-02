@@ -11,6 +11,7 @@
           <mi-icon size="24" v-if="sidebar.collapse"><Expand /></mi-icon>
           <mi-icon size="24" v-else><Fold /></mi-icon>
         </div>
+        <user-avator></user-avator>
       </div>
       <div class="page-container-wrap">
         <router-view>
@@ -22,6 +23,7 @@
 <script setup>
 
 import sideBar from './components/sideBar/Menu.vue'
+import userAvator from './components/userAvator.vue'
 import { Expand, Fold } from '@element-plus/icons-vue'
 import { useSidebarStore } from '@/store/modules/sidebar'
 import { ref, onMounted } from 'vue'
