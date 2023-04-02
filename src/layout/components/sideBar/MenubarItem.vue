@@ -10,13 +10,15 @@
         :menu-data="child">
       </menubar-item>
     </mi-sub-menu>
-    <mi-menu-item v-else :index="item.index">
+    <mi-menu-item @click="closeMask" v-else :index="item.index">
       <span>{{ item.title }}</span>
     </mi-menu-item>
   </template>
 </template>
 
 <script>
+import { useSidebarStore } from '@/store/modules/sidebar'
+const sidebar = useSidebarStore()
 export default {
   name: 'MenubarItem',
   props: {
@@ -26,6 +28,9 @@ export default {
     }
   },
   methods: {
+    closeMask(){
+      sidebar.maskVisible = false
+    }
   },
   data () {
     return {

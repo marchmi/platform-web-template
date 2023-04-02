@@ -95,3 +95,23 @@
      return { name: obj[key], code: isNaN(kToNumber) ? key : kToNumber}
    })
  }
+
+ /**
+ * @desc  函数防抖，用于将多次执行变为最后一次执行
+ * @param {function} func - 需要使用函数防抖的被执行的函数。必传
+ * @param {Number} delay - 多少毫秒之内触发，只执行第一次，默认1000ms。可以不传
+ */
+export const debounce = (fn, delay) => {
+  delay = delay || 1000; //默认1s后执行
+  let timer = null
+  return function () {
+    let context = this
+    let arg = arguments
+    if (timer) {
+      clearTimeout(timer)
+    }
+    timer = setTimeout(() => {
+      fn.apply(context, arg)
+    }, delay)
+  };
+}

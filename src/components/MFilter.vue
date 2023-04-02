@@ -1,5 +1,5 @@
 <template>
-  <div class="filter flex">
+  <div class="filter filter-flex">
     <mi-form ref="filter" class="filter-form" :inline="true" :model="filterParams" label-width="120px" flex>
       <mi-form-item v-for="field in formFields" :prop="field.key" :key="field.key" :label="field.label">
         <template v-if="$slots[field.key]">
@@ -67,7 +67,7 @@
 </script>
 
 <style lang="less" scoped>
-  .flex{
+  .filter-flex{
     display: flex;
     justify-content: space-around;
   }
@@ -77,5 +77,15 @@
   .filter-operations{
     margin-left: 10px;
     text-align: right;
+  }
+  @media screen and (max-width:800px){
+    .filter-flex{
+      display: block;
+    }
+    .filter-operations{
+      text-align: left;
+      margin-left: 0;
+      margin-bottom: 10px;
+    }
   }
 </style>

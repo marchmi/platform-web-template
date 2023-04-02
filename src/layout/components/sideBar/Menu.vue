@@ -2,9 +2,6 @@
   <div class="sidebar-container" :style="{width: sidebar.collapse?'':'240px'}">
     <mi-scrollbar>
       <mi-menu 
-        background-color="#545c64"
-        text-color="#fff"
-        active-text-color="#ffd04b"
         :router="true" 
         :default-active="onRoutes" 
         :collapse="sidebar.collapse" 
@@ -32,7 +29,6 @@ export default defineComponent({
     const router = useRouter()
     const route = useRoute()
     const onRoutes = computed(() => {
-      console.log(route.path)
       return route.path
     })
 
@@ -41,7 +37,6 @@ export default defineComponent({
     const iconUrl = ref('https://tdesign.gtimg.com/site/baseLogo-light.png');
 
     const changeCollapsed = () => {
-      sidebar.collapse = !sidebar.collapse;
       iconUrl.value = sidebar.collapse
         ? 'https://oteam-tdesign-1258344706.cos.ap-guangzhou.myqcloud.com/site/logo%402x.png'
         : 'https://tdesign.gtimg.com/site/baseLogo-light.png';

@@ -22,7 +22,11 @@ export default {
 <style lang="less">
 .app-main {
   position: relative;
-  height: calc(100% - 80px);
+  height: calc(100% - 90px);
+  width: calc(100% - 30px);
+  border-radius: 5px;
+  background: #fff;
+  margin: 15px;
   &.detail {
     height: auto;
   }

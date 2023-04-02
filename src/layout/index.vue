@@ -1,11 +1,18 @@
 <template>
   <div class="layout">
-    <div class="layout-left">
+    <div class="layout-mask" @click="sidebar.handleToggleMaskVisible" :class="sidebar.maskVisible?'active':''"></div>
+    <!-- 宽屏模式下显示 非宽屏模式下，mask开启的状态下显示菜单 -->
+    <div class="layout-left" v-show="isWideScreen||sidebar.maskVisible">
       <side-bar></side-bar>
     </div>
     <div class="layout-right">
-      <div class="toolBar"></div>
-      <div class="page-container">
+      <div class="toolBar">
+        <div class="collapse-switch" @click="changeCollapsed">
+          <mi-icon size="24" v-if="sidebar.collapse"><Expand /></mi-icon>
+          <mi-icon size="24" v-else><Fold /></mi-icon>
+        </div>
+      </div>
+      <div class="page-container-wrap">
         <router-view>
         </router-view>
       </div>
@@ -13,18 +20,68 @@
   </div>
 </template>
 <script setup>
+
 import sideBar from './components/sideBar/Menu.vue'
+import { Expand, Fold } from '@element-plus/icons-vue'
+import { useSidebarStore } from '@/store/modules/sidebar'
+import { ref, onMounted } from 'vue'
+import { debounce } from '@/utils/index.js'
+const isWideScreen = ref(true) // 是否是宽屏
+// 宽屏模式（窗口的宽度>=800）下菜单折叠展开处理逻辑
+const sidebar = useSidebarStore()
+const changeCollapsed = () => {
+  // 如果是宽屏状态下，按钮点击时控制菜单是否折叠
+  if(isWideScreen.value){
+    sidebar.handleCollapse()
+    return
+  }
+  sidebar.handleToggleMaskVisible()
+}
+
+const watchScreenWidth = debounce(() => {
+  const el = document.documentElement
+  const width = el.offsetWidth
+  if(width<=800){ // 非宽屏模式下 
+    isWideScreen.value = false
+    sidebar.collapse = false // 菜单保持非折叠状态
+    return
+  }
+  sidebar.maskVisible = false
+  isWideScreen.value = true
+  sidebar.collapse = false // 菜单保持非折叠状态
+}, 100)
+
+onMounted(()=>{
+  watchScreenWidth()
+  window.addEventListener('resize', watchScreenWidth)
+})
+
 </script>
 
 <style lang='less' scoped>
   .layout{
     height: 100vh;
+    background: #f7f7f7;
     display: flex;
+    position: relative;
+    .layout-mask{
+      position: fixed;
+      left: 0;
+      top: 0;
+      background-color: #00000080;
+      height: 100%;
+      width: 100%;
+      z-index: 999;
+      display: none;
+      &.active{
+        display: block;
+      }
+    }
     .layout-left{
       // width: 240px;
       height: 100vh;
       padding: 0 5px 0 0;
-      background: #545c64;
+      background: var(--el-menu-bg-color);
       .sidebar-container{
         height: 100%;
         overflow: hidden;
@@ -33,16 +90,33 @@ import sideBar from './components/sideBar/Menu.vue'
         border-right: none;
       }
     }
+    @media screen and (max-width:800px){
+      .layout-left{
+        position: absolute;
+        left: 0;
+        z-index: 9999;
+        transition: all .3s;
+      }
+    }
     .layout-right{
       flex: 1;
+      overflow: hidden;
       .toolBar{
+        position: relative;
         height: 55px;
-        background: #545c64;
+        background: var(--el-menu-bg-color);
+        .collapse-switch{
+          position: absolute;
+          left: 10px;
+          top:15px;
+          cursor: pointer;
+        }
+        .collapse-switch:hover{
+            color: var(--el-color-primary);
+          }
       }
-      .page-container{
+      .page-container-wrap{
         height: 100%;
-        background: #fff;
-        overflow-y: hidden;
       }
     }
   }

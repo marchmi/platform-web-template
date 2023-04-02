@@ -42,7 +42,7 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  document.title = `${to.meta.title} | vue-easy-admin`
+  document.title = `${to.meta.title} | Platform-Web-Template`
   const role = localStorage.getItem('ms_username')
   if (!to.matched.length) {
     next('/404')
