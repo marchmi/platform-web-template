@@ -1,0 +1,128 @@
+body{
+  --dark-background-color: #2c3142;
+  --white-font-color: #fff;
+}
+body.theme {
+  &-default {
+    .layout {
+      .layout-left {
+        background: var(--dark-background-color);
+        .el-menu {
+          background: var(--dark-background-color);
+          .el-sub-menu__title {
+            color: var(--white-font-color);
+            &:hover {
+              background: var(--color-primary)!important;
+            }
+          }
+          .el-menu-item {
+            color: var(--white-font-color);
+            &.is-active {
+              background: var(--color-primary)!important;
+            }
+            &:hover {
+              background: var(--color-primary)!important;
+            }
+          }
+        }
+      }
+      .layout-right{
+        .toolBar{
+          color: var(--color-primary)!important;
+        }
+      }
+    }
+  }
+  &-guolv {
+    .layout {
+      .layout-left {
+        background: var(--dark-background-color);
+        .el-menu {
+          background: var(--dark-background-color);
+          .el-sub-menu__title {
+            color: var(--white-font-color);
+            &:hover {
+              background: var(--color-primary)!important;
+            }
+          }
+          .el-menu-item {
+            color: var(--white-font-color);
+            &.is-active {
+              background: var(--color-primary)!important;
+            }
+            &:hover {
+              background: var(--color-primary)!important;
+            }
+          }
+        }
+      }
+      .layout-right{
+        .toolBar{
+          color: var(--color-primary)!important;
+        }
+      }
+    }
+  }
+  &-jiangzi {
+    .layout {
+      .layout-left {
+        background: var(--white-font-color);
+        .el-menu {
+          background: var(--white-font-color);
+          .el-sub-menu__title {
+            color: var(--dark-background-color);
+            &:hover {
+              color: var(--color-primary)!important;
+            }
+          }
+          .el-menu-item {
+            color: var(--dark-background-color);
+            &.is-active {
+              color: var(--color-primary)!important;
+              border-right: 3px solid var(--color-primary)!important;
+            }
+            &:hover {
+              color: var(--color-primary)!important;
+            }
+          }
+        }
+      }
+      .layout-right{
+        .toolBar{
+          color: var(--color-primary)!important;
+        }
+      }
+    }
+  }
+  &-jihei {
+    .layout {
+      .layout-left {
+        background: var(--dark-background-color);
+        .el-menu {
+          background: var(--dark-background-color);
+          .el-sub-menu__title {
+            color: var(--white-font-color);
+            &:hover {
+              background: var(--color-primary)!important;
+            }
+          }
+          .el-menu-item {
+            color: var(--white-font-color);
+            &.is-active {
+              background: var(--color-primary)!important;
+            }
+            &:hover {
+              background: var(--color-primary)!important;
+            }
+          }
+        }
+      }
+      .layout-right{
+        .toolBar{
+          background: var(--dark-background-color);
+          color: var(--white-font-color);
+        }
+      }
+    }
+  }
+}

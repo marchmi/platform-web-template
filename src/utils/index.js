@@ -115,3 +115,5 @@ export const debounce = (fn, delay) => {
     }, delay)
   };
 }
+
+export const Storage = window.localStorage

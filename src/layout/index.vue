@@ -8,10 +8,11 @@
     <div class="layout-right">
       <div class="toolBar">
         <div class="collapse-switch" @click="changeCollapsed">
-          <mi-icon size="24" v-if="sidebar.collapse"><Expand /></mi-icon>
+          <mi-icon size="24" v-if="sidebar.collapse||!isWideScreen"><Expand /></mi-icon>
           <mi-icon size="24" v-else><Fold /></mi-icon>
         </div>
         <user-avator></user-avator>
+        <theme></theme>
       </div>
       <div class="page-container-wrap">
         <router-view>
@@ -24,6 +25,7 @@
 
 import sideBar from './components/sideBar/Menu.vue'
 import userAvator from './components/userAvator.vue'
+import theme from './components/theme.vue'
 import { Expand, Fold } from '@element-plus/icons-vue'
 import { useSidebarStore } from '@/store/modules/sidebar'
 import { ref, onMounted } from 'vue'
@@ -82,7 +84,7 @@ onMounted(()=>{
     .layout-left{
       // width: 240px;
       height: 100vh;
-      padding: 0 5px 0 0;
+      padding: 0;
       background: var(--el-menu-bg-color);
       .sidebar-container{
         height: 100%;
@@ -114,8 +116,8 @@ onMounted(()=>{
           cursor: pointer;
         }
         .collapse-switch:hover{
-            color: var(--el-color-primary);
-          }
+          color: var(--el-color-primary);
+        }
       }
       .page-container-wrap{
         height: 100%;

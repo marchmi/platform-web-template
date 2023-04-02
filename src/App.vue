@@ -1,10 +1,14 @@
 <script setup>
+import zhCn from "element-plus/lib/locale/lang/zh-cn"
 </script>
 
 <template>
-  <router-view />
+  <mi-config-provider :locale="zhCn">
+    <router-view />
+  </mi-config-provider>
 </template>
 
-<style>
+<style lang="less">
  @import "./assets/css/reset.css";
+ @import "./assets/css/index.less";
 </style>

@@ -30,7 +30,10 @@ import {
   ElAvatar,
   ElDropdown,
   ElDropdownMenu,
-  ElDropdownItem
+  ElDropdownItem,
+  ElBadge,
+  ElDrawer,
+  ElConfigProvider 
 } from 'element-plus'
 import 'element-plus/dist/index.css'
 
@@ -60,7 +63,10 @@ const coms = [
   ElAvatar,
   ElDropdown,
   ElDropdownMenu,
-  ElDropdownItem
+  ElDropdownItem,
+  ElBadge,
+  ElDrawer,
+  ElConfigProvider 
 ]
 
 export default (app) => {
