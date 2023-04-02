@@ -33,7 +33,8 @@ import {
   ElDropdownItem,
   ElBadge,
   ElDrawer,
-  ElConfigProvider 
+  ElConfigProvider,
+  ElColorPicker
 } from 'element-plus'
 import 'element-plus/dist/index.css'
 
@@ -66,7 +67,8 @@ const coms = [
   ElDropdownItem,
   ElBadge,
   ElDrawer,
-  ElConfigProvider 
+  ElConfigProvider,
+  ElColorPicker
 ]
 
 export default (app) => {

@@ -15,6 +15,14 @@
           </div>
         </div>
       </div>
+      <div class="recommend-theme theme-tool">
+        <div class="sub-title">切换主色</div>
+        <div class="theme-list">
+          <div class="theme-item">
+            <mi-color-picker v-model="pickedColor" @change="componentState.setTheme({color: pickedColor})" /><span class="picked-color-value">{{pickedColor}}</span>
+          </div>
+        </div>
+      </div>
     </mi-drawer>
   </div>
 </template>
@@ -22,7 +30,7 @@
   import useComponentStateStore from '@/store/modules/componentState.js'
   import { useRouter } from 'vue-router'
   import { BrushFilled, Check } from '@element-plus/icons-vue'
-  import { onMounted } from 'vue'
+  import { ref, onMounted, watchEffect } from 'vue'
   const router = useRouter()
   const handleLogout = () => {
     // 实际业务中需调整为调用退出登录接口后清空相关参数
@@ -30,6 +38,10 @@
     router.push({name: 'Login'})
   }
   const componentState = useComponentStateStore()
+  const pickedColor = ref('')
+  watchEffect(()=>{
+    pickedColor.value = componentState.currentTheme.color
+  })
   onMounted(()=>{
     componentState.setTheme(componentState.currentTheme)
   })
@@ -51,7 +63,8 @@
     border-radius: 5px;
     border: 1px solid var(--el-border-color);
     font-size: 14px;
-    color: #000
+    color: #000;
+    margin-bottom: 20px;
   }
   .sub-title{
     margin-bottom: 10px;
@@ -77,6 +90,9 @@
       .theme-item-text{
         height: 20px;
         margin: 5px 10px 5px 0;
+      }
+      .picked-color-value{
+        margin: 5px;
       }
     }
   }
