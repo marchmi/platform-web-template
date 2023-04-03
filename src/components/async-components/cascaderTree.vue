@@ -17,7 +17,8 @@ export default {
       default: () => {
         return {
           label: 'name',
-          value: 'id'
+          value: 'id',
+          expandTrigger: 'hover'
         }
       }
     },
