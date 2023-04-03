@@ -5,8 +5,124 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Platform-Web-Template</title>
+    <style>
+      .preload__wrap {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        letter-spacing: 1px;
+        background-color: #2f3447;
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        z-index: 9999;
+        cursor: wait;
+      }
+
+      .preload__container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+        user-select: none;
+        flex-grow: 1;
+      }
+
+      .preload__name {
+        font-size: 30px;
+        color: #fff;
+        letter-spacing: 5px;
+        font-weight: bold;
+        margin-bottom: 30px;
+      }
+
+      .preload__title {
+        color: #fff;
+        font-size: 14px;
+        margin: 30px 0 20px 0;
+      }
+
+      .preload__sub-title {
+        color: #ababab;
+        font-size: 12px;
+      }
+
+      .preload__loading {
+        height: 30px;
+        width: 30px;
+        border-radius: 30px;
+        border: 7px solid currentColor;
+        border-bottom-color: #2f3447 !important;
+        position: relative;
+        animation: r 1s infinite cubic-bezier(0.17, 0.67, 0.83, 0.67),
+          bc 2s infinite ease-in;
+        transform: rotate(0deg);
+      }
+
+      @keyframes r {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .preload__loading::after,
+      .preload__loading::before {
+        content: "";
+        display: inline-block;
+        position: absolute;
+        bottom: -2px;
+        height: 7px;
+        width: 7px;
+        border-radius: 10px;
+        background-color: currentColor;
+      }
+
+      .preload__loading::after {
+        left: -1px;
+      }
+
+      .preload__loading::before {
+        right: -1px;
+      }
+
+      @keyframes bc {
+        0% {
+          color: #689cc5;
+        }
+
+        25% {
+          color: #b3b7e2;
+        }
+
+        50% {
+          color: #93dbe9;
+        }
+
+        75% {
+          color: #abbd81;
+        }
+
+        100% {
+          color: #689cc5;
+        }
+      }
+    </style>
   </head>
   <body>
+    <div class="preload__wrap" id="Loading">
+      <div class="preload__container">
+        <p class="preload__name">PLATFORM-WEB-TEMPLATE</p>
+        <div class="preload__loading"></div>
+        <p class="preload__title">正在加载资源...</p>
+        <p class="preload__sub-title">初次加载资源可能需要较多时间 请耐心等待</p>
+      </div>
+    </div>
     <div id="app"></div>
     <script type="module" src="/src/main.js"></script>
   </body>

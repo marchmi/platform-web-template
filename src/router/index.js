@@ -41,6 +41,14 @@ const router = createRouter({
   routes
 })
 
+// 组件加载后
+router.beforeResolve(() => {
+  const el = document.getElementById("Loading");
+  if (el) {
+    el.style.display = "none";
+  }
+})
+
 router.beforeEach((to, from, next) => {
   document.title = `${to.meta.title} | Platform-Web-Template`
   const role = localStorage.getItem('ms_username')
