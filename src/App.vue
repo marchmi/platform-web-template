@@ -11,4 +11,5 @@ import zhCn from "element-plus/lib/locale/lang/zh-cn"
 <style lang="less">
  @import "./assets/css/reset.css";
  @import "./assets/css/index.less";
+ @import "./assets/css/animate.less";
 </style>
