@@ -1,6 +1,6 @@
 <template>
   <div>
-    <mi-select v-model="val" v-bind="$attrs">
+    <mi-select v-model="val" v-bind="$attrs" style="width:100%">
       <mi-option
         v-for="item in options"
         :key="item[labelKey]"

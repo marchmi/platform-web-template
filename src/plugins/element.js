@@ -4,7 +4,7 @@
  * updateTime: 2023-3-20 18:03
  * 按需加载当前项目中使用到的组件并，组件重命名；使切换ui库时项目中组件所使用的标签名能够保持统一
  */
-import {
+ import {
   ElButton,
   ElInput,
   ElRadio,
@@ -34,7 +34,13 @@ import {
   ElBadge,
   ElDrawer,
   ElConfigProvider,
-  ElColorPicker
+  ElColorPicker,
+  ElLink,
+  ElDialog,
+  ElTooltip,
+  ElRow,
+  ElCol,
+  ElCard
 } from 'element-plus'
 import 'element-plus/dist/index.css'
 
@@ -68,7 +74,13 @@ const coms = [
   ElBadge,
   ElDrawer,
   ElConfigProvider,
-  ElColorPicker
+  ElColorPicker,
+  ElLink,
+  ElDialog,
+  ElTooltip,
+  ElRow,
+  ElCol,
+  ElCard
 ]
 
 export default (app) => {

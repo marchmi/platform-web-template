@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="width:100%">
     <component
       :is="renderView"
       v-bind="$attrs"
@@ -7,57 +7,45 @@
     />
   </div>
 </template>
-<script>
-import Input from './async-components/input.vue'
-import Textarea from './async-components/textarea.vue'
-import Select from './async-components/select.vue'
-import Cascader from './async-components/cascaderTree.vue'
-import Checkbox from './async-components/checkbox.vue'
-import Image from './async-components/image.vue'
-import ImageUploader from './async-components/imageUploader.vue'
-import DatePicker from './async-components/datePicker.vue'
-import UnRegister from './async-components/unregister.vue'
-export default {
-  name: 'DynamicViewLoader',
-  props: {
-    data: {
-      type: [Array, String, Number, Boolean, Object, Date],
-      default: () => null
-    },
-    type: {
-      type: String,
-      default: 'input'
-    }
+
+<script setup>
+
+import { defineAsyncComponent,computed } from 'vue'
+
+const props = defineProps({
+  data: {
+    type: [Array, String, Number, Boolean, Object, Date],
+    default: () => null
   },
-  setup () {
-    const rtn = {
-      components: {
-        input: Input,
-        textarea: Textarea,
-        select: Select,
-        cascader: Cascader,
-        checkbox: Checkbox,
-        image: Image,
-        imageUploader:ImageUploader,
-        datePicker: DatePicker,
-        unRegister:UnRegister
-      }
-    }
-    return rtn
-  },
-  computed: {
-    val: {
-      get () {
-        return this.data
-      },
-      set (value) {
-        this.$emit('update:data', value)
-      }
-    },
-    renderView () {
-    //   return () => import(`${this.path}`)
-      return this.components[this.type] || this.components['unRegister']
-    }
+  type: {
+    type: String,
+    default: 'input'
   }
+})
+
+const componentView = {
+  input: defineAsyncComponent(()=>import('./async-components/input')),
+  textarea: defineAsyncComponent(()=>import('./async-components/textarea')),
+  select: defineAsyncComponent(()=>import('./async-components/select')),
+  cascader: defineAsyncComponent(()=>import('./async-components/cascaderTree')),
+  checkbox: defineAsyncComponent(()=>import('./async-components/checkbox')),
+  image: defineAsyncComponent(()=>import('./async-components/image')),
+  imageUploader: defineAsyncComponent(()=>import('./async-components/imageUploader')),
+  datePicker: defineAsyncComponent(()=>import('./async-components/datePicker')),
+  unRegister: defineAsyncComponent(()=>import('./async-components/unregister'))
 }
+
+const renderView = computed(()=>{
+  return componentView[props.type] || componentView['unRegister']
+})
+
+const emit = defineEmits(['update:data'])
+
+const val = computed({
+  get: ()=> props.data,
+  set: (value)=>{
+    emit('update:data', value)
+  }
+})
+
 </script>

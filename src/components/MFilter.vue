@@ -1,7 +1,7 @@
 <template>
   <div class="filter filter-flex">
-    <mi-form ref="filter" class="filter-form" :inline="true" :model="filterParams" label-width="120px" flex>
-      <mi-form-item v-for="field in formFields" :prop="field.key" :key="field.key" :label="field.label">
+    <mi-form ref="filter" class="filter-form" :inline="true" :model="filterParams" :label-position="componentState.isMobile ? 'top' : 'right'" label-width="120px" flex>
+      <mi-form-item v-for="field in formFields" :prop="field.key" :key="field.key" :label="field.label" style="width: 360px">
         <template v-if="$slots[field.key]">
           <slot :name="field.key"></slot>
         </template>
@@ -23,6 +23,9 @@
 
   import MOperation from '@/components/MOperation.vue'
   import DynamicViewLoader from '@/components/DynamicViewLoader.vue'
+
+  import useComponentStateStore from '@/store/modules/componentState'
+  const componentState = useComponentStateStore()
 
   // 定义组件接收的props
   const props = defineProps({

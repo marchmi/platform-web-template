@@ -8,14 +8,37 @@
     style="width: 100%"
     >
     <mi-table-column v-if="attrs.useSelection" type="selection" width="55" />
+    <!-- 设置了width属性时，min-width属性会失效 -->
     <mi-table-column
       v-for="(field) in columns"
       :key="field.key"
       :prop="field.key"
       :label="field.label"
-      :width="field.tbl_width"
+      :width="field.tbl_width || ''"
+      :min-width="field.minWidth"
       align="center"
     >
+      <template #header>
+        <!-- 使用插槽进行渲染 -->
+        <template v-if="$slots[`${field.key}Title`]">
+          <slot :name="`${field.key}Title`"></slot>
+        </template>
+        <template v-else-if="field.toolTip">
+          <mi-tooltip
+            effect="dark"
+            :content="field.toolTip"
+            placement="top-start"
+          >
+            <div class="tooltip-header">
+              <mi-icon><InfoFilled /></mi-icon>
+              <span>{{field.label}}</span>
+            </div>
+          </mi-tooltip>
+        </template>
+        <template v-else>
+          <span>{{field.label}}</span>
+        </template>
+      </template>
       <template #default="{ row }">
         <template v-if="field.key==='useRadio'">
           <mi-radio v-model="attrs.currentSelection" :label="row[attrs.rowKey]" size="large">&nbsp;</mi-radio>
@@ -32,17 +55,22 @@
       </template>
     </mi-table-column>
     <!-- 通过$slots中是否有operation插槽控制显示操作栏 -->
-    <mi-table-column v-if="$slots.operation" :fixed="attrs.fixedOperationColumn" label="操作" :width="attrs.operation_width||120">
+    <!-- <mi-table-column v-if="$slots.operation" :fixed="attrs.fixedOperationColumn" label="操作" :width="attrs.operation_width||120"> -->
+    <mi-table-column v-if="operations.length" :fixed="attrs.fixedOperationColumn" label="操作" :width="operationWidth||120">
       <template #default="{ row }">
-        <slot name="operation" :row="row" :compRef="table">
-        </slot>
+        <!-- <slot name="operation" :row="row" :compRef="table">
+        </slot> -->
+        <m-operation :operations="operations" @updateOperationColWidth="updateOperationColWidth" :compRef="table" :row="row"></m-operation>
       </template>
     </mi-table-column>
   </mi-table>
 </template>
 <script setup>
-  import { formatValue } from '@/utils/index.js'
-  import { ref, computed } from 'vue'
+  import { formatValue } from '@/utils'
+  import { ref, computed, onMounted, nextTick, watch } from 'vue'
+  import { InfoFilled } from '@element-plus/icons-vue'
+  import { setElMinWidth } from '@/utils/elAutoWidthUtil'
+  import MOperation from '@/components/MOperation'
   // 定义组件接收的props
   const props = defineProps({
     // 表格数据
@@ -93,6 +121,28 @@
         ]
       }
     },
+    // 操作栏
+    operations: {
+      type: Array,
+      default: () => {
+        return [
+          {
+            label: '编辑', // 按钮文案
+            handler: (val) => { console.log(val) }, // 按钮点击事件
+            permission: '1', // 按钮权限code
+            isShow: (row) => {
+              return true
+            },
+            disabled: (row) => {
+              return false
+            },
+            props: { // 其他的按钮控制属性
+              type: 'primary'
+            }
+          }
+        ]
+      }
+    },
     // 其他控制属性
     attrs: {
       type: Object,
@@ -107,7 +157,7 @@
           operation_width: 120
         }
       }
-    },
+    }
   })
 
   const table = ref(null)
@@ -143,4 +193,35 @@
     emit('update:attrs', props.attrs)
   }
 
+  const operationWidth = ref(props.attrs.operation_width || 80)
+
+  const updateOperationColWidth = (width) => {
+    if(width > operationWidth.value){
+      operationWidth.value = width
+    }
+  }
+
+  watch(
+    () => props.tableColumn,
+    (columns) => {
+      setElMinWidth(columns)
+    },
+    {
+      immediate: true,
+      deep: true
+    }
+  )
+
 </script>
+
+<style lang="less" scoped>
+.tooltip-header{
+  display: flex;
+  justify-content: left;
+  cursor: pointer;
+  :deep(.el-icon){
+    margin-right: 5px;
+    margin-top: 4px;
+  }
+}
+</style>

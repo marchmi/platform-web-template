@@ -7,7 +7,8 @@
       <template v-else>
         <!--  operation.isShow(row) operation.disabled(row) operation.handler(row) 表格中使用组件时，row为传递给组件的当前行的数据,在筛选条件中使用时，row是当前筛选条件的值-->
         <!-- click事件添加stop修饰符，避免点击按钮时，触发row-click事件 -->
-        <mi-button 
+        <mi-button
+          size="default"
           v-bind="operation.props"
           v-if="((row)=>{ return operation.isShow ? operation.isShow(row): true })(row)" 
           :disabled="((row)=>{ return operation.disabled ? operation.disabled(row): false})(row)" 
@@ -20,7 +21,8 @@
   </div>
 </template>
 <script setup>
-  import { ref } from 'vue'
+  import { ref, watch } from 'vue'
+  import { getTotalWith } from '@/utils/elAutoWidthUtil'
   // 定义组件接收的props
   const props = defineProps({
     operations: {
@@ -51,6 +53,20 @@
       required: false
     } 
   })
+
+  const emit = defineEmits(['updateOperationColWidth'])
+
+  watch(
+    () => props.operations,
+    (operations) => {
+      const width = getTotalWith(operations.map(operate => operate.label))
+      emit('updateOperationColWidth', width)
+    },
+    {
+      immediate: true,
+      deep: true
+    }
+  )
 
   const operate = ref(null)
 

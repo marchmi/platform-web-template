@@ -19,10 +19,10 @@ const useForm = (options = {}) => {
   const formFields = reactive([...fields])
 
   // 筛选条件操作按钮数据
-  const operations = reactive(useOperation(options.operations).operations)
+  const operations = reactive(useOperation(options.operations||[]).operations)
 
-  // 筛选条件的值,筛选条件的值的初始化
-  const dataFormParams = reactive({})
+  // form绑定的值
+  const dataFormParams = reactive({ ...(options.formParams || {}) })
 
   return {
     operations,

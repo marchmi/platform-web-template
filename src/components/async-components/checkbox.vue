@@ -39,7 +39,7 @@ export default {
   computed: {
     val: {
       get () {
-        return this.data
+        return this.data || []
       },
       set (value) {
         this.$emit('update:data', value)

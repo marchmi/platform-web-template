@@ -1,7 +1,6 @@
 <template>
   <div>
-    <mi-cascader v-model="val" :options="options" :props="CascaderProps" v-bind="$attrs" style="width:100%">
-    </mi-cascader>
+    <mi-input type="number" v-model.trim="val" clearable v-bind="$attrs" />
   </div>
 </template>
 <script>
@@ -10,17 +9,6 @@ export default {
     data: {
       type: [String, Number],
       default: ''
-    },
-
-    CascaderProps: {
-      type: [Object],
-      default: () => {
-        return {
-          label: 'name',
-          value: 'id',
-          expandTrigger: 'hover'
-        }
-      }
     },
 
     options: {

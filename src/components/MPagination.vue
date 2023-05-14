@@ -1,15 +1,20 @@
 <template>
-  <mi-pagination
-    :total="pagination.total"
-    v-model:current-page="pagination.pageNum"
-    v-model:page-size="pagination.pageSize"
-    @size-change="handleSizeChange"
-    @current-change="handleCurrentChange"
-    v-bind="attrs"
-  />
+  <div class="pagination-wrap">
+    <mi-pagination
+      :total="pagination.total"
+      v-model:current-page="pagination.pageNum"
+      v-model:page-size="pagination.pageSize"
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+      v-bind="attrs"
+      :layout="layout"
+    />
+  </div>
 </template>
 <script setup>
-  import { onBeforeMount } from 'vue'
+  import { onBeforeMount, watchEffect, computed } from 'vue'
+  import useComponentStateStore from '@/store/modules/componentState'
+  const componentState = useComponentStateStore()
   // 定义组件接收的props
   const props = defineProps({
     // 数据总量
@@ -62,7 +67,23 @@
   const handleCurrentChange = (page) => {
     emit('fetchData')
   }
+
+  // 移动端或窄屏幕模式下，修改
+  watchEffect(()=>{
+    props.attrs.background = !componentState.isMobile
+    props.attrs.small = componentState.isMobile
+  })
+
+  const layout = computed(()=>{
+    return componentState.isMobile ? 'prev, pager, next' : props.attrs.layout
+  })
+
   onBeforeMount(()=>{
     emit('fetchData')
   })
 </script>
+<style lang="less" scoped >
+  .pagination-wrap {
+    padding: 20px 0;
+  }
+</style>

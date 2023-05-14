@@ -9,8 +9,9 @@ export default defineConfig({
     ],
     resolve: {
       alias: {
-        '@': resolve(__dirname, './src') ,
+        '@': resolve('src'),//作为 entries 的选项
       },
+      extensions: ['.mjs', '.js', '.ts', '.jsx', '.tsx', '.json', '.vue'],
     },
     server: {
       // 是否开启 https
