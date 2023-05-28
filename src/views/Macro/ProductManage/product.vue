@@ -53,7 +53,7 @@
 
   import useFilter from '@/components/hooks/useFilter.js' // 组件props脚本引入
   import useOperation from '@/components/hooks/useOperation.js'
-  import useTable from '@/components/hooks/useTable.js'
+  import useTable from '@/components/hooks/useTableOld.js'
   import usePagination from '@/components/hooks/usePagination.js'
   
   const brandOptions = ref([]) // 筛选条件-品牌下拉框选项数据

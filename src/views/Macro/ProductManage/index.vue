@@ -62,7 +62,7 @@
   import MPagination from "@/components/MPagination.vue"
 
   import useOperation from '@/components/hooks/useOperation.js' // 组件props脚本引入
-  import useTable from '@/components/hooks/useTable.js'
+  import useTable from '@/components/hooks/useTableOld.js'
   import usePagination from '@/components/hooks/usePagination.js'
   
   const router = useRouter()
