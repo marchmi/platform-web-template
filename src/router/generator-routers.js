@@ -2,7 +2,7 @@
  * 自动载入views目录下的文件，生成路由表
  */
 
- import { Layout, sortRoute, routeSortGather, combinedFileGather } from './constant'
+ import { Layout, sortRoute, routeSortGather, combinedFileGather, RouteMenuTitles } from './constant'
  
  const undefined = void 0
   
@@ -60,7 +60,7 @@
    // 获取路由名称
    getRouteName () {
      const { fileName, folderName } = this
-     if (fileName === 'index') { // 文件名为index时，路由名称为文件所处的文件夹名称
+     if (fileName === 'index' || fileName === 'Index') { // 文件名为index时，路由名称为文件所处的文件夹名称
        return folderName
      }
    
@@ -79,7 +79,7 @@
      this.route.name = this.routeName
      this.route.hidden = combinedFileGather.includes(fileName)
      this.route.component = this.file
-     this.route.meta.title = this.routeName
+     this.route.meta.title = RouteMenuTitles[this.routeName] || this.routeName
      this.route.meta.sort = routeSortGather.indexOf(this.routeName) === -1 ? 1000 : routeSortGather.indexOf(this.routeName)
      this.route.meta.configName = folderName
    }
@@ -118,7 +118,7 @@
        routes[routeName] = {
          path: `/${routeName}`,
          name: routeName,
-         meta: { title: routeName, sort: routeSortGather.indexOf(routeName) === -1 ? 1000 : routeSortGather.indexOf(routeName) },
+         meta: { title: RouteMenuTitles[routeName] || routeName, sort: routeSortGather.indexOf(routeName) === -1 ? 1000 : routeSortGather.indexOf(routeName) },
          component: Layout,
          children: []
        }

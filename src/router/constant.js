@@ -10,6 +10,7 @@
   */
  export const routeSortGather = [
   'dashboard', // 'Dasshboard',
+  'viewgroup', // '容器组件演示'
  ]
  
  // 需要和文件夹名称拼接name属性的文件名
@@ -19,4 +20,8 @@
  export function sortRoute (a, b) {
    return (a.meta?.sort || 0) - (b.meta?.sort || 0)
  }
-  
+
+// 菜单名称
+export const RouteMenuTitles = {
+  viewgroup: '容器组件'
+}
