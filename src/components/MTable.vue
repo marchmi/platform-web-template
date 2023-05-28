@@ -15,7 +15,7 @@
       :prop="field.key"
       :label="field.label"
       :width="field.tbl_width || ''"
-      :min-width="field.minWidth"
+      :min-width="field.minWidth || 55"
       align="center"
     >
       <template #header>
@@ -77,48 +77,14 @@
     tableData: {
       type: Array,
       default: () => {
-        return [
-          {
-            id: 1, 
-            date: 1678522220000,
-            income: 3000.00,
-            name: 'Tom',
-            address: 'No. 189, Grove St, Los Angeles',
-          },
-          {
-            id: 2, 
-            date: 1678522320000,
-            income: 80000.00,
-            name: 'Tom',
-            address: 'No. 189, Grove St, Los Angeles',
-          },
-          {
-            id: 3, 
-            date: 1678522210000,
-            income: 1000.25,
-            name: 'Tom',
-            address: 'No. 189, Grove St, Los Angeles',
-          },
-          {
-            id: 4, 
-            date: 1678522220000,
-            income: 100000000.00,
-            name: 'Tom',
-            address: 'No. 189, Grove St, Los Angeles',
-          }
-        ]
+        return []
       }
     },
     // 表格展示字段
     tableColumn: {
       type: Array,
       default: ()=>{
-        return [
-          { key: 'name', label: '姓名' },
-          { key: 'income', label: '收入', format: 'commafy' },
-          { key: 'date', label: '日期', format: 'formatDate' },
-          { key: 'address', label: '地址' }
-        ]
+        return []
       }
     },
     // 操作栏
@@ -154,7 +120,8 @@
           rowKey: 'id',
           'highlight-current-row': false,
           stripe: true,
-          operation_width: 120
+          operation_width: 120,
+          selectionValChange: undefined
         }
       }
     }
@@ -166,19 +133,20 @@
   const columns = computed(()=>{
     const rtn = [...props.tableColumn]
     if(props.attrs.useRadio){
-      rtn.unshift({key: 'useRadio', label: '选择', tbl_width: 50})
+      rtn.unshift({key: 'useRadio', label: '选择', tbl_width: 60})
     }
     return rtn
   })
 
   // 需要向父组件同步状态的值，定义emit事件
-  const emit = defineEmits(['update:attrs'])
+  const emit = defineEmits(['update:attrs', 'updateSelection'])
 
   // 更新当前选中项
   const handleCurrentChange = (row) => {
     if(props.attrs.useRadio){ // 单选功能开启时
       props.attrs.currentSelection = row[props.attrs.rowKey]
       emit('update:attrs', props.attrs)
+      emit('updateSelection', row)
     }
     if(props.attrs.useSelection){ // 多选功能开启时
       table.value.toggleRowSelection(row, undefined)
@@ -190,6 +158,9 @@
     props.attrs.currentSelection = selection.map(row=>{
       return row[props.attrs.rowKey]
     })
+    if(props.attrs.selectionValChange){
+      props.attrs.selectionValChange(selection)
+    }
     emit('update:attrs', props.attrs)
   }
 
