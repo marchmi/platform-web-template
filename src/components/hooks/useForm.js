@@ -7,27 +7,41 @@
 import { reactive } from 'vue'
 import useOperation from './useOperation'
 const useForm = (options = {}) => {
+  /**
+   * options: {
+   *   formFields: [] // 表单中要展示的字段信息管理对象
+   *   operations: [] // 表单中的操作按钮的属性管理对象
+   *   dataFormParams: {} // 表单v-model的对象
+   * }
+   */
 
-  // 计算字段的props属性
-  const fields = options.formFields.map(field=>{
-    const mergedAttr = Object.assign({}, field.props||{})
+  // 计算字段的props属性,穿透给对应的展示组件
+  const fields = options.formFields.map(field => {
+    const mergedAttr = Object.assign({}, field.props || {})
     const rtn = {...Object.assign({}, field), props: mergedAttr}
     return rtn
   })
 
-  // 筛选条件中要展示的字段
+  // 表单中要展示的字段
+  /**
+   * 字段配置有breakSign属性时，字段显示为subtitle
+   */
   const formFields = reactive([...fields])
 
-  // 筛选条件操作按钮数据
+  // 表单中操作按钮的属性管理对象
   const operations = reactive(useOperation(options.operations||[]).operations)
 
   // form绑定的值
   const dataFormParams = reactive({ ...(options.formParams || {}) })
 
+  // 表单校验规则
+  const rules = reactive({ ...(options.rules || {}) })
+
   return {
+    formFields,
     operations,
     dataFormParams,
-    formFields
+    rules
   }
 }
 export default useForm

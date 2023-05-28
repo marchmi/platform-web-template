@@ -1,6 +1,15 @@
 <template>
   <div class="form">
-    <mi-form ref="dataForm" class="data-form" :model="dataFormParams" label-width="120px" :label-position="'top'" flex>
+    <mi-form 
+      ref="dataForm"
+      class="data-form"
+      :model="dataFormParams"
+      label-width="120px"
+      :label-position="'top'"
+      :rules="rules"
+      :validate-on-rule-change="false"
+      flex
+    >
       <mi-form-item v-for="field in formFields" :prop="field.key" :key="field.key">
         <template #label>
           <template v-if="field.toolTip">
@@ -30,6 +39,7 @@
             v-model:data="dataFormParams[field.key]"
             :type="field.type"
             v-bind="field.props"
+            :events="field.events || {}"
             >
           </dynamic-view-loader>
         </template>
@@ -51,40 +61,37 @@
 
   // 定义组件接收的props
   const props = defineProps({
-    dataFormParams: {
+    dataFormParams: { // v-model绑定对象
       type: Object,
       required: true
     },
-    formFields: {
+    formFields: { // 表单展示的字段信息集合
       type: Array,
       default: () => {
         return [
-          {
-            key: 'name',
-            type: 'input',
-            label: '姓名',
-            props: {}
-          },
-          {
-            key: 'income',
-            type: 'input',
-            label: '收入',
-            props: {}
-          }
+          // {
+          //   key: 'name',
+          //   type: 'input',
+          //   label: '姓名',
+          //   props: {}
+          // }
         ]
       }
     },
-    operations: {
+    operations: { // 操作按钮
       type: Array,
       default: () => {
         return [
-          { label: '取消', handler: (val) => { console.log(val) } },
-          { label: '确认', handler: (val) => { Object.keys(val).forEach(key=>val[key] = '') } }
+          // { label: '取消', handler: (val) => { console.log(val) } },
+          // { label: '确认', handler: (val) => { Object.keys(val).forEach(key=>val[key] = '') } }
         ]
       }
     },
-    operations_wrap: {
-      type: [String,Object]
+    rules: { // 表单校验规则
+      type: Object,
+      default: () => {
+        return {}
+      }
     }
   })
 

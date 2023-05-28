@@ -10,7 +10,9 @@
   */
  export const routeSortGather = [
   'dashboard', // 'Dasshboard',
-  'viewgroup', // '容器组件演示'
+  'viewgroup', // '容器组件',
+  'MTable', // 'Table组件',
+  'MForm', // 'Form组件'
  ]
  
  // 需要和文件夹名称拼接name属性的文件名
@@ -23,5 +25,7 @@
 
 // 菜单名称
 export const RouteMenuTitles = {
-  viewgroup: '容器组件'
+  viewgroup: '容器组件',
+  MTable: 'Table组件',
+  MForm: 'Form组件'
 }

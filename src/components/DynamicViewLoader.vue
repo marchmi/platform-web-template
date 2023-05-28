@@ -4,6 +4,7 @@
       :is="renderView"
       v-bind="$attrs"
       v-model:data="val"
+      :events="events"
     />
   </div>
 </template>
@@ -20,6 +21,12 @@ const props = defineProps({
   type: {
     type: String,
     default: 'input'
+  },
+  events: {
+    type: Object,
+    default: () => {
+      {}
+    }
   }
 })
 
