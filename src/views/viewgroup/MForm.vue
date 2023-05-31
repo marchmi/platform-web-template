@@ -390,6 +390,7 @@
     if(value===ruleForm.dataFormParams.press){
       callback(new Error('作品和出版社名称不能重复'))
     }
+    callback()
   }
 
   /**
