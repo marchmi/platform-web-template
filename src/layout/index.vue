@@ -26,13 +26,15 @@
 </template>
 <script setup>
 
-import sideBar from './components/sideBar/Menu.vue'
-import userAvator from './components/userAvator.vue'
-import theme from './components/theme.vue'
+import sideBar from './components/sideBar/Menu'
+import userAvator from './components/userAvator'
+import theme from './components/theme'
 import { Expand, Fold } from '@element-plus/icons-vue'
 import { useSidebarStore } from '@/store/modules/sidebar'
 import { ref, onMounted } from 'vue'
-import { debounce } from '@/utils/index.js'
+import { debounce } from '@/utils'
+import useComponentStateStore from '@/store/modules/componentState'
+const componentState = useComponentStateStore()
 const isWideScreen = ref(true) // 是否是宽屏
 // 宽屏模式（窗口的宽度>=800）下菜单折叠展开处理逻辑
 const sidebar = useSidebarStore()
@@ -48,11 +50,15 @@ const changeCollapsed = () => {
 const watchScreenWidth = debounce(() => {
   const el = document.documentElement
   const width = el.offsetWidth
-  if(width<=800){ // 非宽屏模式下 
+  if(width<=800){ // 非宽屏模式下
+    componentState.dialogFullscreen = true
+    componentState.isMobile = true
     isWideScreen.value = false
     sidebar.collapse = false // 菜单保持非折叠状态
     return
   }
+  componentState.dialogFullscreen = false
+  componentState.isMobile = false
   sidebar.maskVisible = false
   isWideScreen.value = true
   sidebar.collapse = false // 菜单保持非折叠状态

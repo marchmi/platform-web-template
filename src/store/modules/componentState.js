@@ -53,11 +53,16 @@ const useComponentStateStore = defineStore('componentState', {
           color: "#d0378d"
         }
       ], // 预设主题色
-      currentTheme: JSON.parse(Storage.getItem('themeValue')) // 当前主题色
+      currentTheme: JSON.parse(Storage.getItem('themeValue')), // 当前主题色
+      dialogFullscreen: false, // dialong是否全屏显示
+      isMobile: false
     }
   },
   getters: {},
   actions: {
+    toggleDialogFullscreen() {
+      this.dialogFullscreen = !this.dialogFullscreen
+    },
     handleToggleThemeVisible() {
       this.themeVisible = !this.themeVisible
     },
