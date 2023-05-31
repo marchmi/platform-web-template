@@ -9,18 +9,16 @@ import { reactive, ref } from 'vue'
 import useForm from './useForm'
 const useFormDialog = (options = {}) => {
 
-  // 筛选条件操作按钮数据
-  const formAttrs = reactive(useForm(options.formAttrs))
-  const trigger = options.trigger || '查看功能字段信息'
-  const title = options.title || '字段信息'
-  const dialogVisible = ref(false)
+  const formAttrs = reactive(useForm(options.formAttrs)) // 生成MForm组件的props对象
+  const trigger = options.trigger || '打开弹窗' // 弹窗触发按钮的文本
+  const title = options.title || '表头' // 弹窗的title
+  const dialogVisible = ref(false) // 控制弹窗开启关闭
 
+  /**
+   * 切换弹窗的显示状态
+   */
   const toggleDialogVisible = () => {
-    this.dialogVisible.value = !this.dialogVisible.value
-  }
-
-  const updateFormAttrs = () => {
-    const newFormAttrs = useForm(options)
+    dialogVisible.value = !dialogVisible.value
   }
 
   return {
@@ -28,8 +26,7 @@ const useFormDialog = (options = {}) => {
     trigger,
     title,
     dialogVisible,
-    toggleDialogVisible,
-    updateFormAttrs
+    toggleDialogVisible
   }
 }
 export default useFormDialog

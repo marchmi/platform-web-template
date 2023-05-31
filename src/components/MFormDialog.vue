@@ -35,15 +35,15 @@
   import useForm from '@/components/hooks/useForm'
   const componentState = useComponentStateStore()
   const props = defineProps({
-    trigger: {
+    trigger: { // 弹窗触发按钮的文本
       type: String,
-      default: '查看字段说明'
+      default: '打开弹窗'
     },
-    title: {
+    title: { // 弹窗的title
       type: String,
       default: 'Title'
     },
-    dialogVisible: {
+    dialogVisible: { // 弹窗的显示状态控制变量
       type: Boolean
     },
     formAttrs: {
@@ -97,7 +97,12 @@
       }
     }
   })
+
+  /**
+   * 计算弹窗的显示状态
+   */
   const emit = defineEmits(['update:dialogVisible'])
+
   const dialogOpenStatus = computed({
     get: () => {
       return props.dialogVisible
@@ -107,6 +112,10 @@
     }
   })
 
+  /**
+   * MForm组件inited函数回调
+   * 用于指定MForm组件中的操作按钮的显示位置
+   */
   const inited = (callback) => {
     callback('#dialog-footer')
   }
