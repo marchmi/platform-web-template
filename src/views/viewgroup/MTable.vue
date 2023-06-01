@@ -3,7 +3,7 @@
     <template #content>
       <div class="info">
         <h3>基础表格：</h3>
-        <div class="content">
+        <div class="content-wrap">
           <m-table
             v-bind="basicTable"
           >
@@ -16,7 +16,7 @@
       </div>
       <div class="info">
         <h3>带操作按钮：</h3>
-        <div class="content">
+        <div class="content-wrap">
           <m-table
             v-bind="operateTable"
           >
@@ -25,7 +25,7 @@
       </div>
       <div class="info">
         <h3>单选表格：</h3>
-        <div class="content">
+        <div class="content-wrap">
           <m-table
             v-bind="radioTable"
             @updateSelection="updateSelection"
@@ -35,7 +35,7 @@
       </div>
       <div class="info">
         <h3>多选表格：</h3>
-        <div class="content">
+        <div class="content-wrap">
           <m-table
             v-bind="selectionTable"
           >
@@ -44,7 +44,7 @@
       </div>
       <div class="info">
         <h3>使用插槽：</h3>
-        <div class="content">
+        <div class="content-wrap">
           <m-table
             v-bind="soltTable"
           >

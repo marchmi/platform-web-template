@@ -3,7 +3,7 @@
     <template #content>
       <div class="info">
         <h3>基础表单：</h3>
-        <div class="content">
+        <div class="content-wrap">
           <m-form
             v-bind="basicForm"
           >
@@ -12,7 +12,7 @@
       </div>
       <div class="info">
         <h3>带操作表单：</h3>
-        <div class="content">
+        <div class="content-wrap">
           <m-form
             v-bind="operationForm"
           >
@@ -21,7 +21,7 @@
       </div>
       <div class="info">
         <h3>表单校验：</h3>
-        <div class="content">
+        <div class="content-wrap">
           <m-form
             v-bind="ruleForm"
           >
@@ -30,7 +30,7 @@
       </div>
       <div class="info">
         <h3>使用插槽：</h3>
-        <div class="content">
+        <div class="content-wrap">
           <m-form
             v-bind="slotForm"
           >
@@ -43,7 +43,7 @@
       </div>
       <div class="info">
         <h3>多个表单：</h3>
-        <div class="content">
+        <div class="content-wrap">
           <m-form
             v-bind="complexForm"
           >
@@ -52,7 +52,7 @@
       </div>
       <div class="info">
         <h3>含事件交互：</h3>
-        <div class="content">
+        <div class="content-wrap">
           <m-form
             v-bind="eventForm"
           >
