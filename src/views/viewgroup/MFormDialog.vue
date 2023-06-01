@@ -13,7 +13,7 @@
         </div>
       </div>
       <div class="info">
-        <h3>带操作表达：</h3>
+        <h3>带操作表单：</h3>
         <div class="content">
           <m-form-dialog
             v-bind="operationDialogForm"
@@ -24,7 +24,7 @@
         </div>
       </div>
       <div class="info">
-        <h3>带操作表达：</h3>
+        <h3>带操作表单：</h3>
         <div class="content">
           <m-form-dialog
             v-bind="ruleDialogForm"
