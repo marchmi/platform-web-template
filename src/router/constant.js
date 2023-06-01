@@ -13,7 +13,8 @@
   'viewgroup', // '容器组件',
   'MTable', // 'Table组件',
   'MForm', // 'Form组件',
-  'MFormDialog' // 'Form弹窗组件'
+  'MFormDialog', // 'Form弹窗组件',
+  'MOperation' // '操作按钮组件'
  ]
  
  // 需要和文件夹名称拼接name属性的文件名
@@ -29,5 +30,6 @@ export const RouteMenuTitles = {
   viewgroup: '容器组件',
   MTable: 'Table组件',
   MForm: 'Form组件',
-  MFormDialog: 'Form弹窗组件'
+  MFormDialog: 'Form弹窗组件',
+  MOperation: '操作按钮组件'
 }

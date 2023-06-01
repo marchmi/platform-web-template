@@ -1,6 +1,7 @@
 <template>
   <div ref="operate" class="operations">
     <template v-for="(operation, key) in operations" :key="key">
+      <!-- 使用插槽显示的按钮，在按钮对象中声明一个slotName属性 -->
       <template v-if="[operation.slotName] && $slots[operation.slotName]">
         <slot :name="[operation.slotName]" :row="row" :operation="operation" :compRef="compRef"></slot>
       </template>
@@ -32,10 +33,10 @@
           label: '编辑', // 按钮文案
           handler: (val) => { console.log(val) }, // 按钮点击事件
           permission: '1', // 按钮权限code
-          isShow: (row) => {
+          isShow: (row) => { // 按钮是否显示
             return true
           },
-          disabled: (row) => {
+          disabled: (row) => { // 按钮是否禁用
             return false
           },
           props: { // 其他的按钮控制属性
