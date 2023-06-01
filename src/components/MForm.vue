@@ -47,7 +47,12 @@
     </mi-form>
     <!-- 表单操作按钮 -->
     <Teleport v-if="dialogFooterDomRef" :to="dialogFooterDomRef">
-      <m-operation :operations="operations" :row="dataFormParams" :compRef="dataForm"></m-operation>
+      <!-- 向嵌套子组件分发插槽内容 -->
+      <m-operation :operations="operations" :row="dataFormParams" :compRef="dataForm">
+        <template v-for="(index, name) in $slots" v-slot:[name]="props">
+          <slot :name="name" v-bind="props" />
+        </template>
+      </m-operation>
     </Teleport>
     <m-operation v-else :operations="operations" :row="dataFormParams" :compRef="dataForm"></m-operation>
   </div>

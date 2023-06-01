@@ -3,7 +3,7 @@
     <template #content>
       <div class="info">
         <h3>基础表单：</h3>
-        <div class="content">
+        <div class="content-wrap">
           <m-form-dialog
             v-bind="basicDialogForm"
             v-model:dialog-visible="basicDialogForm.dialogVisible"
@@ -14,7 +14,7 @@
       </div>
       <div class="info">
         <h3>带操作表单：</h3>
-        <div class="content">
+        <div class="content-wrap">
           <m-form-dialog
             v-bind="operationDialogForm"
             v-model:dialog-visible="operationDialogForm.dialogVisible"
@@ -24,12 +24,25 @@
         </div>
       </div>
       <div class="info">
-        <h3>带操作表单：</h3>
-        <div class="content">
+        <h3>带操作表单——同时向多个子组件插入内容：</h3>
+        <div class="content-wrap">
           <m-form-dialog
             v-bind="ruleDialogForm"
             v-model:dialog-visible="ruleDialogForm.dialogVisible"
-          >
+          > 
+            <template #author>
+              <mi-input placeholder="使用插槽渲染" v-model="ruleDialogForm.formAttrs.dataFormParams.author"></mi-input>
+            </template>
+            <template #removeRule="{ operation }">
+              <mi-button 
+                v-bind="operation.props"
+                v-if="(()=>{ return operation.isShow ? operation.isShow(): true })()" 
+                :disabled="(()=>{ return operation.disabled ? operation.disabled(): false})()" 
+                @click="operation.handler"
+                v-permission="operation.permission">
+                {{operation.label+' 使用插槽渲染'}}
+              </mi-button>
+            </template>
           </m-form-dialog>
           <mi-button @click="ruleDialogForm.toggleDialogVisible">{{ruleDialogForm.trigger}}</mi-button>
         </div>
@@ -241,9 +254,9 @@
         },
         {
           label: '移除校验规则',
-          handler: (formData, ref) => {
+          slotName: 'removeRule',
+          handler: () => {
             ruleDialogForm.formAttrs.rules = []
-            ref.clearValidate()
           },
           props: { // 其他的按钮控制属性
             type: 'primary',
