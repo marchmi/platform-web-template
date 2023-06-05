@@ -70,6 +70,7 @@
   import useForm from '@/components/hooks/useForm'
   import { enumToArray } from '@/utils'
   import { infoMsg, successMsg } from '@/utils/interaction'
+  import { useRegex, POSITIVE_INTEGER_REGEX } from '@/utils/useRegex'
 
   /**
    * 基础表单，只展示数据
@@ -422,6 +423,14 @@
         }
       },
       {
+        key: 'age',
+        type: 'input',
+        label: '年纪',
+        props: {
+          placeholder: '请输入'
+        }
+      },
+      {
         key: 'tyee',
         type: 'select',
         label: '类型',
@@ -461,6 +470,9 @@
         {
           validator: bookNameValidator, trigger: ['blur', 'change']
         }
+      ],
+      age: [
+        useRegex(POSITIVE_INTEGER_REGEX, '请输入正整数')
       ]
     },
     operations: [
