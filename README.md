@@ -78,12 +78,12 @@ export default {
 
 ```
 
-3. Vue本身采用虚拟DOM，拥有数据驱动视图的能力，所以项目中在视图开发时一般采用 ==`业务组件`== + ==`容器组件`== + ==`视图组件`== 的结构进行实现。
-> ==视图组件==一般按照 `input` 输入框，一个 `select` 选择器这种最小颗粒度的视图进行组件封装，即一个字段对应一个组件。视图组件主要负责数据呈现，会尽量少的包含事件交互，方便容器组件统一调度，确保组件行为。[@/components/async-components](https://github.com/marchmi/platform-web-template/tree/main/src/components/async-components)目录下提供了一部分视图组件。这些组件同时也满足第2点种提到的约定。
+3. Vue本身采用虚拟DOM，拥有数据驱动视图的能力，所以项目中在视图开发时一般采用 `业务组件` + `容器组件` + `视图组件` 的结构进行实现。
+> `视图组件` 一般按照 `input` 输入框，一个 `select` 选择器这种最小颗粒度的视图进行组件封装，即一个字段对应一个组件。视图组件主要负责数据呈现，会尽量少的包含事件交互，方便容器组件统一调度，确保组件行为。[@/components/async-components](https://github.com/marchmi/platform-web-template/tree/main/src/components/async-components)目录下提供了一部分视图组件。这些组件同时也满足第2点种提到的约定。
 
-> ==容器组件== 基于vue的内置组件 `component` 和 `defineAsyncComponent` 实现。能够根据 ==视图管理数据== 动态加载 ==视图组件==，将prop属性和事件信息传递给 ==视图组件== ，并监听 ==视图组件== 的value，将值反馈给父组件。 详见[@/components/DynamicViewLoader.vue](https://github.com/marchmi/platform-web-template/blob/main/src/components/DynamicViewLoader.vue)
+> `容器组件` 基于vue的内置组件 `component` 和 `defineAsyncComponent` 实现。能够根据 `视图管理数据` 动态加载 `视图组件`，将prop属性和事件信息传递给 `视图组件` ，并监听 `视图组件` 的value，将值反馈给父组件。 详见[@/components/DynamicViewLoader.vue](https://github.com/marchmi/platform-web-template/blob/main/src/components/DynamicViewLoader.vue)
 
-> ==`业务组件`== 则是项目中为实现数据展示、数据录入等功能，包含一些组合视图和操作的复杂组件。如 `表单` 、 `弹窗` 、 `弹窗表单` 等。 这一类组件在项目中采用 ==组件== 加 ==组件hook== 的形式实现。==组件== 向容器组件提供 ==视图管理数据== 。==组件hook== 则用于标准化的定义组件props属性及操作函数。
+> `业务组件` 则是项目中为实现数据展示、数据录入等功能，包含一些组合视图和操作的复杂组件。如 `表单` 、 `弹窗` 、 `弹窗表单` 等。 这一类组件在项目中采用  `组件` 加 `组件hook` 的形式实现。`组件` 向容器组件提供 `视图管理数据` 。`组件hook` 则用于标准化的定义组件props属性及操作函数。
 4. 项目中目前提供的业务组件：
 
 | 组件名称 | 组件hook | 使用场景 |
