@@ -85,7 +85,7 @@ const coms = [
 
 export default (app) => {
   coms.map(c => {
-    app.component(c.name.replace('El', "Mi")  // Hello World
+    app.component(c.name.replace('El', "Mi")
     , c)
   })
 }
