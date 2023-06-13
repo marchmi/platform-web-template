@@ -26,6 +26,10 @@ export default defineConfig({
       cors: true,
       // 自定义代理规则
       proxy: {},
+      fs: {
+        // 添加以下语句以防止绕过服务器选项（server.fs.deny）
+        strict: true 
+      }
     },
     build: {
       // 设置最终构建的浏览器兼容目标
