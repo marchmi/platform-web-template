@@ -10,40 +10,44 @@
       :validate-on-rule-change="false"
       flex
     >
-      <mi-form-item v-for="field in formFields" :prop="field.key" :key="field.key">
-        <template #label>
-          <template v-if="field.toolTip">
-            <mi-tooltip
-              effect="dark"
-              :content="field.toolTip"
-              placement="top-start"
-            >
-              <div class="tooltip-header">
-                <mi-icon><InfoFilled /></mi-icon>
+      <mi-row :gutter="24">
+        <mi-col v-for="field in formFields" :key="field.key" :span="field.breakSign ? 24 : (field.span || span)">
+          <mi-form-item :prop="field.key">
+            <template #label>
+              <template v-if="field.toolTip">
+                <mi-tooltip
+                  effect="dark"
+                  :content="field.toolTip"
+                  placement="top-start"
+                >
+                  <div class="tooltip-header">
+                    <mi-icon><InfoFilled /></mi-icon>
+                    <span>{{field.label}}</span>
+                  </div>
+                </mi-tooltip>
+              </template>
+              <template v-else>
                 <span>{{field.label}}</span>
-              </div>
-            </mi-tooltip>
-          </template>
-          <template v-else>
-            <span>{{field.label}}</span>
-          </template>
-        </template>
-        <template v-if="$slots[field.key]">
-          <slot :name="field.key" :formParams="dataFormParams"></slot>
-        </template>
-        <template v-else-if="field.breakSign">
-          <h2>{{field.breakSign}}</h2>
-        </template>
-        <template v-else>
-          <dynamic-view-loader
-            v-model:data="dataFormParams[field.key]"
-            :type="field.type"
-            v-bind="field.props"
-            :events="field.events || {}"
-            >
-          </dynamic-view-loader>
-        </template>
-      </mi-form-item>
+              </template>
+            </template>
+            <template v-if="$slots[field.key]">
+              <slot :name="field.key" :formParams="dataFormParams"></slot>
+            </template>
+            <template v-else-if="field.breakSign">
+              <h2>{{field.breakSign}}</h2>
+            </template>
+            <template v-else>
+              <dynamic-view-loader
+                v-model:data="dataFormParams[field.key]"
+                :type="field.type"
+                v-bind="field.props"
+                :events="field.events || {}"
+                >
+              </dynamic-view-loader>
+            </template>
+          </mi-form-item>
+        </mi-col>
+      </mi-row>
     </mi-form>
     <!-- 表单操作按钮 -->
     <Teleport v-if="dialogFooterDomRef" :to="dialogFooterDomRef">
@@ -66,6 +70,10 @@
 
   // 定义组件接收的props
   const props = defineProps({
+    span: {
+      type: Number,
+      default: 12
+    },
     dataFormParams: { // v-model绑定对象
       type: Object,
       required: true

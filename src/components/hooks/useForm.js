@@ -22,6 +22,9 @@ const useForm = (options = {}) => {
     return rtn
   })
 
+  // el-col span
+  const span = options.span||12
+
   // 表单中要展示的字段
   /**
    * 字段配置有breakSign属性时，字段显示为subtitle
@@ -38,6 +41,7 @@ const useForm = (options = {}) => {
   const rules = reactive({ ...(options.rules || {}) })
 
   return {
+    span,
     formFields,
     operations,
     dataFormParams,

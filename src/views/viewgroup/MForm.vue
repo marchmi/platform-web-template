@@ -301,6 +301,7 @@
    * 带操作表单
   */
   const operationForm = useForm({
+    span: 12,
     formFields: [
       {
         breakSign: '作品信息', // 表单中的上下文分割插槽
@@ -309,6 +310,7 @@
         key: 'bookName',
         type: 'input',
         label: '作品名称',
+        span: 24,
         props: {
           'show-word-limit': true,
           maxlength: 20,
