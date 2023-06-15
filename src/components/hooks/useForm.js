@@ -6,6 +6,8 @@
 
 import { reactive } from 'vue'
 import useOperation from './useOperation'
+import useComponentStateStore from '@/store/modules/componentState'
+const componentState = useComponentStateStore()
 const useForm = (options = {}) => {
   /**
    * options: {
@@ -23,7 +25,10 @@ const useForm = (options = {}) => {
   })
 
   // el-col span
-  const span = options.span||12
+  let span = options.span || 12
+  if(componentState.isMobile) { // 手机模式时，col span 固定为24
+    span = 24
+  }
 
   // 表单中要展示的字段
   /**
