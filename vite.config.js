@@ -40,5 +40,8 @@ export default defineConfig({
       chunkSizeWarningLimit: 2000,
       // 启用/禁用 gzip 压缩大小报告
       reportCompressedSize: false,
+      rollupOptions: {
+        treeshake: true
+      }
     },
 });
