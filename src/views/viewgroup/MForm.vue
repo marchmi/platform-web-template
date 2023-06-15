@@ -64,14 +64,58 @@
 </template>
 
 <script setup>
-  import { reactive } from 'vue'
+  import { ref, reactive, onMounted } from 'vue'
   import AppMain from '@/components/AppMain'
   import MForm from '@/components/MForm'
   import useForm from '@/components/hooks/useForm'
   import { enumToArray } from '@/utils'
   import { infoMsg, successMsg } from '@/utils/interaction'
   import { useRegex, POSITIVE_INTEGER_REGEX } from '@/utils/useRegex'
+  import useForage from '@/plugins/useForage'
 
+  const { setItem, fetchList } = useForage('testDB', 'test') 
+
+  const createOne = async (key, value) => {
+    setItem(key, value).then( res => {
+      getList()
+    })
+  }
+
+  const noteList = ref([]) // 记录本列表
+  const getList = async () => {
+    fetchList().then(res => {
+      const {total, list} = res
+      noteList.value = [...list]
+      if(!noteList.value.length){
+        createOne('default',{...{
+          "name": "演示",
+          "fields": {
+            "field_1": {
+              "type": "input",
+              "fieldName": "a"
+            },
+            "field_2": {
+              "type": "checkbox",
+              "fieldName": "b",
+              "options": ""
+            },
+            "field_3": {
+              "type": "number",
+              "fieldName": "c"
+            },
+            "field_4": {
+              "type": "datePicker",
+              "fieldName": "d"
+            }
+          }
+        }})
+      }
+    })
+  }
+
+  onMounted(()=>{
+    getList()
+  })
   /**
    * 基础表单，只展示数据
   */
