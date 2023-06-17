@@ -1,6 +1,6 @@
 <template>
   <div>
-    <mi-cascader v-model="val" :options="options" :props="CascaderProps" v-bind="$attrs" style="width:100%">
+    <mi-cascader v-model="val" :options="options" :props="CascaderProps" v-bind="$attrs" v-on="$attrs.events || {}" style="width:100%">
     </mi-cascader>
   </div>
 </template>
@@ -8,7 +8,7 @@
 export default {
   props: {
     data: {
-      type: [String, Number],
+      type: [String, Number, Array],
       default: ''
     },
 
