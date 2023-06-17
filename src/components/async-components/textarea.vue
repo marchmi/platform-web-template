@@ -7,6 +7,7 @@
       type="textarea"
       v-model="val"
       v-bind="$attrs"
+      v-on="$attrs.events || {}"
     />
   </div>
 </template>
@@ -14,19 +15,10 @@
 export default {
   props: {
     data: {
-      type: [String, Number],
+      type: [String],
       default: ''
-    },
-
-    options: {
-      type: [Array, String, Object],
-      default: () => {
-        return []
-      }
     }
   },
-
-  methods: {},
 
   computed: {
     val: {

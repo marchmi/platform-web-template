@@ -1,10 +1,17 @@
 <template>
   <div>
-    <mi-checkbox-group  v-model="val" v-bind="$attrs">
+    <mi-checkbox-group 
+      v-model="val"
+      v-bind="$attrs"
+      v-on="$attrs.events || {}"
+    >
       <mi-checkbox
         v-for="item in options"
         :key="item[labelKey]"
-        :label="item[valueKey]">{{item[labelKey]}}</mi-checkbox>
+        :label="item[valueKey]"
+      >
+        {{item[labelKey]}}
+      </mi-checkbox>
     </mi-checkbox-group>
   </div>
 </template>
@@ -12,7 +19,7 @@
 export default {
   props: {
     data: {
-      type: [String, Number],
+      type: [String, Array],
       default: ''
     },
 
@@ -33,8 +40,6 @@ export default {
       }
     }
   },
-
-  methods: {},
 
   computed: {
     val: {

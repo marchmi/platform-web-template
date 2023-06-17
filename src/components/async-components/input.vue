@@ -1,6 +1,11 @@
 <template>
   <div>
-    <mi-input v-model.trim="val" clearable v-bind="$attrs" v-on="$attrs.events || {}"/>
+    <mi-input 
+      v-model.trim="val"
+      clearable
+      v-bind="$attrs"
+      v-on="$attrs.events || {}"
+    />
   </div>
 </template>
 <script>
@@ -11,8 +16,6 @@ export default {
       default: ''
     }
   },
-
-  methods: {},
 
   computed: {
     val: {

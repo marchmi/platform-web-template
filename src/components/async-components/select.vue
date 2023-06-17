@@ -7,6 +7,7 @@
         :label="item[labelKey]"
         :value="item[valueKey]"
         v-bind="$attrs"
+        v-on="$attrs.events || {}"
       >
       </mi-option>
     </mi-select>
@@ -21,24 +22,22 @@ export default {
     },
 
     labelKey: {
-      type: [String, Number],
+      type: [String],
       default: 'name'
     },
 
     valueKey: {
-      type: [String, Number],
+      type: [String],
       default: 'code'
     },
 
     options: {
-      type: [Array, String, Object],
+      type: [Array, String],
       default: () => {
         return []
       }
     }
   },
-
-  methods: {},
 
   computed: {
     val: {

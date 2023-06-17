@@ -1,6 +1,10 @@
 <template>
   <div>
-     <img :src="data" :style="{width:width,height:height}" v-bind="$attrs">
+    <img 
+      :src="data"
+      :style="{width: width, height: height}"
+      v-bind="$attrs"
+    >
   </div>
 </template>
 <script>
@@ -19,18 +23,7 @@ export default {
     height: {
       type: [String,Number],
       default: '50px'
-    },
-
-    options: {
-      type: [Array, String, Object],
-      default: () => {
-        return []
-      }
     }
-  },
-
-  methods: {},
-
-  computed: {}
+  }
 }
 </script>

@@ -4,6 +4,7 @@
       v-model="val"
       type="date"
       v-bind="$attrs"
+      v-on="$attrs.events || {}"
     />
   </div>
 </template>
@@ -11,15 +12,8 @@
 export default {
   props: {
     data: {
-      type: [String, Number, Date],
+      type: [String, Number, Date, Array],
       default: ''
-    },
-
-    options: {
-      type: [Array, String, Object],
-      default: () => {
-        return []
-      }
     }
   },
 

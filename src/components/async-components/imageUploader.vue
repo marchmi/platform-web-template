@@ -9,8 +9,14 @@
       :before-upload="beforeUpload"
       :on-remove="handleRemove"
       :on-success="handleUploadSuccess"
-      :on-preview="handlePreview">
-      <mi-button size="small" type="primary">点击上传</mi-button>
+      :on-preview="handlePreview"
+    >
+      <mi-button
+        size="small"
+        type="primary"
+      >
+        点击上传
+      </mi-button>
     </mi-upload>
   </div>
 </template>
@@ -19,15 +25,8 @@ import { reactive } from 'vue'
 export default {
   props: {
     data: {
-      type: [String, Number],
+      type: [String,],
       default: ''
-    },
-
-    options: {
-      type: [Array, String, Object],
-      default: () => {
-        return []
-      }
     }
   },
 
