@@ -4,8 +4,8 @@
  * LastEditTime: 2023-3-11 19:57 
  */
 
- import { formatDate } from './timeUtils.js'
- import { commafy } from './numberUtils.js'
+ import { formatDate } from './timeUtils'
+ import { commafy } from './numberUtils'
  
  const token = 'token'
  

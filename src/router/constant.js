@@ -2,7 +2,7 @@
  * 引入公共使用的组件
  */
 
- export const Layout = () => import('@/layout/index.vue')
+ export const Layout = () => import('@/layout')
 
  /**
   * routeSortGather用于为路由表中的路由对象输出sort

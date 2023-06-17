@@ -50,20 +50,20 @@
 </template>
 <script setup>
   import { ref, reactive, onMounted } from 'vue'
-  import { formatValue } from '@/utils/index.js'
-  import { confirm, successMsg } from '@/utils/interaction.js'
+  import { formatValue } from '@/utils'
+  import { confirm, successMsg } from '@/utils/interaction'
   import { useRouter } from 'vue-router'
 
-  import { fetchList } from '@/api/Macro/ProductManage/productCate.js' // api引入
+  import { fetchList } from '@/api/Macro/ProductManage/productCate' // api引入
 
-  import AppMain from "@/components/AppMain.vue" // 组件引入
-  import MOperation from '@/components/MOperation.vue'
-  import MTable from "@/components/MTable.vue"
-  import MPagination from "@/components/MPagination.vue"
+  import AppMain from "@/components/AppMain" // 组件引入
+  import MOperation from '@/components/MOperation'
+  import MTable from "@/components/MTable"
+  import MPagination from "@/components/MPagination"
 
-  import useOperation from '@/components/hooks/useOperation.js' // 组件props脚本引入
-  import useTable from '@/components/hooks/useTableOld.js'
-  import usePagination from '@/components/hooks/usePagination.js'
+  import useOperation from '@/components/hooks/useOperation' // 组件props脚本引入
+  import useTable from '@/components/hooks/useTableOld'
+  import usePagination from '@/components/hooks/usePagination'
   
   const router = useRouter()
 

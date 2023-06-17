@@ -14,7 +14,7 @@
 
 <script>
 import { defineComponent, ref, computed } from 'vue'
-import MenubarItem from './MenubarItem.vue'
+import MenubarItem from './MenubarItem'
 import { ViewListIcon }  from 'tdesign-icons-vue-next'
 import { useSidebarStore } from '@/store/modules/sidebar'
 import { routesStore } from '@/store/modules/routes'

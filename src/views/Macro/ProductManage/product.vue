@@ -36,25 +36,25 @@
 </template>
 <script setup>
   import { ref, reactive, onMounted } from 'vue'
-  import { enumToArray, formatValue } from '@/utils/index.js'
-  import { confirm } from '@/utils/interaction.js'
+  import { enumToArray, formatValue } from '@/utils'
+  import { confirm } from '@/utils/interaction'
 
-  import { fetchList as fetchBrandOptions } from '@/api/Macro/ProductManage/brand.js' // api引入
-  import { fetchOptionsData as fetchCategoryOptions } from '@/api/Macro/ProductManage/category.js'
-  import { fetchList, deleteOne } from '@/api/Macro/ProductManage/product.js' // api引入
+  import { fetchList as fetchBrandOptions } from '@/api/Macro/ProductManage/brand' // api引入
+  import { fetchOptionsData as fetchCategoryOptions } from '@/api/Macro/ProductManage/category'
+  import { fetchList, deleteOne } from '@/api/Macro/ProductManage/product' // api引入
 
-  import { PUBLISH_STATUS, VERIFY_STATUS } from '@/const/Macro.js'
+  import { PUBLISH_STATUS, VERIFY_STATUS } from '@/const/Macro'
 
-  import AppMain from "@/components/AppMain.vue" // 组件引入
-  import MFilter from '@/components/MFilter.vue'
-  import MOperation from '@/components/MOperation.vue'
-  import MTable from "@/components/MTable.vue"
-  import MPagination from "@/components/MPagination.vue"
+  import AppMain from "@/components/AppMain" // 组件引入
+  import MFilter from '@/components/MFilter'
+  import MOperation from '@/components/MOperation'
+  import MTable from "@/components/MTable"
+  import MPagination from "@/components/MPagination"
 
-  import useFilter from '@/components/hooks/useFilter.js' // 组件props脚本引入
-  import useOperation from '@/components/hooks/useOperation.js'
-  import useTable from '@/components/hooks/useTableOld.js'
-  import usePagination from '@/components/hooks/usePagination.js'
+  import useFilter from '@/components/hooks/useFilter' // 组件props脚本引入
+  import useOperation from '@/components/hooks/useOperation'
+  import useTable from '@/components/hooks/useTableOld'
+  import usePagination from '@/components/hooks/usePagination'
   
   const brandOptions = ref([]) // 筛选条件-品牌下拉框选项数据
 

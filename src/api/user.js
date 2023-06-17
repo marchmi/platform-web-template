@@ -1,4 +1,4 @@
-import { macrozhengRequest } from '@/service/macrozheng.js'
+import { macrozhengRequest } from '@/service/macrozheng'
 const adminRequest = macrozhengRequest('', '/admin')
 
 export const login = (body) => adminRequest({

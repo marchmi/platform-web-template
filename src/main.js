@@ -1,5 +1,5 @@
 import { createApp } from 'vue'
-import App from './App.vue'
+import App from './App'
 import installUI from './plugins/element'
 import setupDirective from '@/directives'
 // import installUI from './plugins/tdesign'

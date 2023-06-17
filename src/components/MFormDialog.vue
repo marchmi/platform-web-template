@@ -30,7 +30,7 @@
   import { ref, computed } from 'vue'
   import MForm from '@/components/MForm'  
   import AppMain from "@/components/AppMain" // 组件引入
-  import FullScreenIcon from './dialogFullScreenIcon.vue'
+  import FullScreenIcon from './dialogFullScreenIcon'
   import useComponentStateStore from '@/store/modules/componentState'
   import useForm from '@/components/hooks/useForm'
   const componentState = useComponentStateStore()

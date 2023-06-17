@@ -21,8 +21,8 @@
 <script setup>
   import { ref, reactive } from 'vue'
 
-  import MOperation from '@/components/MOperation.vue'
-  import DynamicViewLoader from '@/components/DynamicViewLoader.vue'
+  import MOperation from '@/components/MOperation'
+  import DynamicViewLoader from '@/components/DynamicViewLoader'
 
   import useComponentStateStore from '@/store/modules/componentState'
   const componentState = useComponentStateStore()

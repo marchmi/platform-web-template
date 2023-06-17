@@ -16,7 +16,7 @@ const routes = [
     meta: {
       title: '找不到页面'
     },
-    component: () => import('../layout/404.vue')
+    component: () => import('../layout/404')
   },
   {
     path: '/403',
@@ -24,7 +24,7 @@ const routes = [
     meta: {
       title: '没有权限'
     },
-    component: () => import('../layout/403.vue')
+    component: () => import('../layout/403')
   },
   {
     path: '/login',
@@ -32,7 +32,7 @@ const routes = [
     meta: {
       title: '登录'
     },
-    component: () => import('../layout/Login.vue')
+    component: () => import('../layout/Login')
   }
 ]
 

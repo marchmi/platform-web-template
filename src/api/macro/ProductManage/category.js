@@ -1,4 +1,4 @@
-import { macrozhengRequest } from '@/service/macrozheng.js'
+import { macrozhengRequest } from '@/service/macrozheng'
 const categoryRequest = macrozhengRequest('', '/productCategory')
 
 export const fetchOptionsData = () => {

@@ -22,7 +22,7 @@
   import { ref } from 'vue'
   import MTable from '@/components/MTable'  
   import AppMain from "@/components/AppMain" // 组件引入
-  import FullScreenIcon from './dialogFullScreenIcon.vue'
+  import FullScreenIcon from './dialogFullScreenIcon'
   import useComponentStateStore from '@/store/modules/componentState'
   import useTable from '@/components/hooks/useTable'
   const componentState = useComponentStateStore()

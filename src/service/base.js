@@ -5,8 +5,8 @@
  */
 
  import axios from 'axios'
- import { clearEmpty, getToken } from '@/utils/index.js'
- import { errorMsg, createLoading } from '@/utils/interaction.js'
+ import { clearEmpty, getToken } from '@/utils'
+ import { errorMsg, createLoading } from '@/utils/interaction'
  
  const axiosInstance = axios.create({
    timeout: 50000

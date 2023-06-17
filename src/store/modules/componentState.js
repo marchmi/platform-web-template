@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
-import { Storage } from '@/utils/index.js'
-import { successMsg } from '@/utils/interaction.js'
+import { Storage } from '@/utils'
+import { successMsg } from '@/utils/interaction'
 const storageTheme = JSON.parse(Storage.getItem('themeValue'))
 if(!storageTheme){
   Storage.setItem('themeValue', JSON.stringify({

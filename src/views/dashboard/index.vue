@@ -7,7 +7,7 @@
   </app-main>
 </template>
 <script setup>
-import AppMain from '@/components/AppMain.vue'
+import AppMain from '@/components/AppMain'
 </script>
 <style lang="less" scoped>
 .dashboard{

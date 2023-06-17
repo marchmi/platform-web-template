@@ -27,7 +27,7 @@
   </div>
 </template>
 <script setup>
-  import useComponentStateStore from '@/store/modules/componentState.js'
+  import useComponentStateStore from '@/store/modules/componentState'
   import { useRouter } from 'vue-router'
   import { BrushFilled, Check } from '@element-plus/icons-vue'
   import { ref, onMounted, watchEffect } from 'vue'
