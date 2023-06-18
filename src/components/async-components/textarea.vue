@@ -5,6 +5,7 @@
       show-word-limit
       resize="none"
       type="textarea"
+      :rows="3"
       v-model="val"
       v-bind="$attrs"
       v-on="$attrs.events || {}"
