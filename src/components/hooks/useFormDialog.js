@@ -9,7 +9,7 @@ import { reactive, ref } from 'vue'
 import useForm from './useForm'
 const useFormDialog = (options = {}) => {
 
-  const formAttrs = reactive(useForm(options.formAttrs)) // 生成MForm组件的props对象
+  const formAttrs = reactive(useForm({span: 24, ...options.formAttrs})) // 生成MForm组件的props对象
   const trigger = options.trigger || '打开弹窗' // 弹窗触发按钮的文本
   const title = options.title || '表头' // 弹窗的title
   const dialogVisible = ref(false) // 控制弹窗开启关闭
