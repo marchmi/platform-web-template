@@ -31,7 +31,7 @@
 </template>
 <script setup>
   import { ref, reactive, onMounted } from 'vue'
-  import { confirm } from '@/utils/interaction'
+  import { confirm, errorMsg } from '@/utils/interaction'
 
   import AppMain from '@/components/AppMain' // 组件引入
   import MFilter from '@/components/MFilter'
@@ -49,7 +49,7 @@
 
   import useForage from '@/plugins/useForage'
 
-  const { setItem, fetchList } = useForage('forageDB', 'dic')
+  const { setItem, fetchList } = useForage('forageDB', 'dictionary', 'enumCode')
 
   const { tableData, pagination, handleSearch, handleReset } = usePage(fetchList)
 
@@ -194,9 +194,15 @@
   const handleSubmit = (formData, ref) => {
     ref.validate((valid, fields) => {
       if (valid) {
-        setItem(formData)
-        toggleFormDialogVisible(ref)
-        handleSearch()
+        setItem(formData).then(res=>{
+          const {code, message} = res
+          if(code!==200){
+            errorMsg(message)
+            return
+          }
+          toggleFormDialogVisible(ref)
+          handleSearch()
+        })
       } else {
         console.log('error submit!', fields)
       }
