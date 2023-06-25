@@ -46,6 +46,9 @@ function checkAllConditions (filter, value) {
  * validUniKey('CODE_1','CODE1') // true
  */
 function validUniKey (insertVal, iterateVal) {
+  if(iterateVal === undefined) {
+    return true
+  }
   return insertVal !== iterateVal
 }
 
@@ -75,10 +78,13 @@ const useForage = (dbName, storeName, uniKey) => {
    * @returns promise
    */
   const setItem = async (value) => {
+    if(!value.uuid){
+      value.createTime = new Date().getTime()
+    }
     let uuid = value.uuid || generateUUID()
     value.uuid = uuid
     const response = { code: 200, message: 'OK', data: value }
-    const isUni = await checkUniVal(value, uniKey)
+    const isUni = await checkUniVal(value, uniKey, value.uuid)
     if(!isUni) {
       return { code: 500, message: 'Duplicate values of a property specified as having uniqueness', data: value }
     }
@@ -86,7 +92,7 @@ const useForage = (dbName, storeName, uniKey) => {
     return { ...response, data}
   }
 
-  const checkUniVal = async (val, uniKey) => {
+  const checkUniVal = async (val, uniKey, uuid) => {
     return new Promise((resolve, reject) => {
       if(!uniKey) {
         resolve(true)
@@ -95,7 +101,8 @@ const useForage = (dbName, storeName, uniKey) => {
       let uniBool = true
       // 这里是异步操作
       forage.iterate((value, key, idx)=> {
-        if(!validUniKey(val[uniKey], value[uniKey])){
+        const isCurrent = value.uuid === uuid // 修改操作时，对比的是当前修改的数据时
+        if(!validUniKey(val[uniKey], value[uniKey]) && !isCurrent){
           uniBool = false
         }
       }).then(res=>{
