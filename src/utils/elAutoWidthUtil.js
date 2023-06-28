@@ -50,7 +50,7 @@ export const getTheWidestWidth = ( textGather = [] ) => {
 export const getTotalWith = ( textGather = [] ) => {
   let total = 0
   textGather.forEach( text => {
-    total += getTextWidth(text) + 20
+    total += getTextWidth(text) + 24
   })
   return total ? total : 0 // 30像素的左右边距
 }

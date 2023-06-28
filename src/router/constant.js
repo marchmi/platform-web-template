@@ -14,7 +14,11 @@
   'MTable', // 'Table组件',
   'MForm', // 'Form组件',
   'MFormDialog', // 'Form弹窗组件',
-  'MOperation' // '操作按钮组件'
+  'MOperation', // '操作按钮组件'
+  'material', // '物料管理'
+  'tag', // '食材tag'
+  'ingredients', // '食材清单'
+  'inventory', // '入库管理'
  ]
  
  // 需要和文件夹名称拼接name属性的文件名
@@ -31,5 +35,9 @@ export const RouteMenuTitles = {
   MTable: 'Table组件',
   MForm: 'Form组件',
   MFormDialog: 'Form弹窗组件',
-  MOperation: '操作按钮组件'
+  MOperation: '操作按钮组件',
+  material: '物料管理',
+  tag: '食材tag',
+  ingredients: '食材清单',
+  inventory: '入库管理'
 }

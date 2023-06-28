@@ -32,6 +32,7 @@ const props = defineProps({
 
 const componentView = {
   input: defineAsyncComponent(()=>import('./async-components/input')),
+  number: defineAsyncComponent(()=>import('./async-components/number')),
   textarea: defineAsyncComponent(()=>import('./async-components/textarea')),
   select: defineAsyncComponent(()=>import('./async-components/select')),
   cascader: defineAsyncComponent(()=>import('./async-components/cascaderTree')),

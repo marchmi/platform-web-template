@@ -144,7 +144,7 @@ const useForage = (dbName, storeName, uniKey) => {
    * @param {*} query 
    * @returns 
    */
-  const fetchList = async (query = {}) => {
+  const fetchList = async (query = {pageNum: 1, pageSize: 1000}) => {
     const total = await getLength()
     const result = { total }
     const { pageNum, pageSize } = query
@@ -174,7 +174,8 @@ const useForage = (dbName, storeName, uniKey) => {
     toggleStore,
     setItem,
     getLength,
-    fetchList
+    fetchList,
+    removeItem
   }
 }
 
