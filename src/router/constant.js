@@ -19,6 +19,10 @@
   'tag', // '食材tag'
   'ingredients', // '食材清单'
   'inventory', // '入库管理'
+  'portion', // '份量管理'
+  'dishManage', // '菜品管理'
+  'dishTag', // '菜品标签'
+  'dish', // '菜品信息'
  ]
  
  // 需要和文件夹名称拼接name属性的文件名
@@ -39,5 +43,9 @@ export const RouteMenuTitles = {
   material: '物料管理',
   tag: '食材tag',
   ingredients: '食材清单',
-  inventory: '入库管理'
+  inventory: '入库管理',
+  portion: '份量管理',
+  dishManage: '菜品管理',
+  dishTag:  '菜品标签',
+  dish: '菜品信息'
 }

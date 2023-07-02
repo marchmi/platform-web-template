@@ -1,23 +1,45 @@
 import { defineStore } from 'pinia'
-import { reactive } from 'vue'
 import useForage from '@/plugins/useForage'
 
 const useEnumStore = defineStore('enumStore', {
   state: () => {
     return {
-      ingredientEnum: [],
-      ingredientEnumMap: {}
+      ingredientEnum: [], // 食材信息
+      ingredientEnumMap: {}, // 食材信息Map
+      ingredientTagEnum: [], // 食材Tag
     }
   },
   getters: {},
   actions: {
+    /**
+     * 获取食材信息
+     */
     fetchIngredientEnum() {
+      if(this.ingredientEnum.length) {
+        return
+      }
       const { fetchList } = useForage('material', 'ingredient')
       fetchList().then(res=>{
         this.ingredientEnum.length = 0
         res.list.forEach(ingredient=>{
           this.ingredientEnumMap[ingredient.ingredientCode] = { ...ingredient }
           this.ingredientEnum.push({ code: ingredient.ingredientCode, name: ingredient.ingredientName, ...ingredient })
+        })
+      })
+    },
+
+    /**
+     * 获取食材Tag信息
+     */
+    fetchIngredientTagEnum() {
+      if(this.ingredientTagEnum.length) {
+        return
+      }
+      const { fetchList } = useForage('material', 'tag')
+      fetchList().then(res=>{
+        this.ingredientTagEnum.length = 0
+        res.list.forEach(tag=>{
+          this.ingredientTagEnum.push({ code: tag.tagCode, name: tag.tagName })
         })
       })
     }

@@ -49,6 +49,10 @@
 
   import useForage from '@/plugins/useForage'
 
+  import useEnumStore from '@/store/modules/useEnumStore'
+
+  const enumStore = useEnumStore()
+
   const { setItem, fetchList, removeItem } = useForage('material', 'ingredient', 'ingredientCode')
 
   // 表格数据 分页器控制对象 搜索 重置搜索条件
@@ -119,7 +123,7 @@
     {
       key: 'splittingCoefficient',
       label: '拆分系数',
-      toolTip: '购入的食材一份或者一斤可拆分多少份菜品'
+      toolTip: '购入的1基数的食材可以拆分成多少子份用于菜品'
     },
     {
       key: 'remark',
@@ -193,6 +197,16 @@
           }
         },
         {
+          key: 'ingredientTags',
+          type: 'select',
+          label: '食材Tag',
+          props: {
+            options: enumStore.ingredientTagEnum,
+            placeholder: '请选择食材Tag',
+            multiple: true
+          }
+        },
+        {
           key: 'unit',
           type: 'input',
           label: '计量单位',
@@ -216,7 +230,7 @@
           key: 'splittingCoefficient',
           type: 'number',
           label: '拆分系数',
-          toolTip: '购入的食材一份或者一斤可拆分多少份菜品',
+          toolTip: '购入的1基数的食材可以拆分成多少子份用于菜品',
           props: {
             'show-word-limit': true,
             maxlength: 5,
@@ -301,6 +315,7 @@
   ])
 
   onMounted(()=>{
+    enumStore.fetchIngredientTagEnum()
   })
 
 </script>

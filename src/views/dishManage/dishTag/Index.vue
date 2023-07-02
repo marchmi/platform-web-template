@@ -49,11 +49,7 @@
 
   import useForage from '@/plugins/useForage'
 
-  import useEnumStore from '@/store/modules/useEnumStore'
-
-  const enumStore = useEnumStore()
-
-  const { setItem, fetchList, removeItem } = useForage('material', 'inventory')
+  const { setItem, fetchList, removeItem } = useForage('dish', 'tag', 'tagCode')
 
   // 表格数据 分页器控制对象 搜索 重置搜索条件
   const { tableData, pagination, handleSearch, handleReset } = usePage(fetchList)
@@ -62,12 +58,19 @@
   const filterAttrs = useFilter({
     formFields: [
       {
-        key: 'ingredientCode',
-        type: 'select',
-        label: '食材',
+        key: 'tagName',
+        type: 'input',
+        label: '标签名',
         props: {
-          options: enumStore.ingredientEnum,
-          placeholder: '请选择食材'
+          placeholder: '请输入标签名搜索'
+        }
+      },
+      {
+        key: 'tagCode',
+        type: 'input',
+        label: '标签CODE',
+        props: {
+          placeholder: '请输入标签CODE搜索'
         }
       }
     ],
@@ -98,21 +101,12 @@
       label: 'UUID'
     },
     {
-      key: 'ingredientName',
-      label: '食材名称'
+      key: 'tagName',
+      label: '标签名称'
     },
     {
-      key: 'weight',
-      label: '入库基数',
-      toolTip: '入库的食材的数量，以斤或者箱等为单位'
-    },
-    {
-      key: 'costPrice',
-      label: '进价'
-    },
-    {
-      key: 'ingredientCode',
-      label: '食材CODE'
+      key: 'tagCode',
+      label: '标签CODE'
     },
     {
       key: 'remark',
@@ -162,41 +156,27 @@
     pagination: pagination
   }).attrs)
 
-  const ingredientChange = (val) => {
-    const { ingredientCode, ingredientName } = enumStore.ingredientEnumMap[val]
-    formDialog.formAttrs.dataFormParams.ingredientName = ingredientName 
-    formDialog.formAttrs.dataFormParams.ingredientCode = ingredientCode
-  }
   const formDialog = reactive(useFormDialog({
     formAttrs: {
       formFields: [
         {
-          key: 'ingredientCode',
-          type: 'select',
-          label: '食材',
+          key: 'tagName',
+          type: 'input',
+          label: '标签名称',
           props: {
-            options: enumStore.ingredientEnum,
-            placeholder: '请选择食材'
-          },
-          events: {
-            change: ingredientChange
+            'show-word-limit': true,
+            maxlength: 20,
+            placeholder: '请输入标签名称'
           }
         },
         {
-          key: 'weight',
-          type: 'number',
-          label: '入库基数',
-          toolTip: '入库的食材的数量，以斤或者箱等为单位',
+          key: 'tagCode',
+          type: 'input',
+          label: '标签CODE',
           props: {
-            placeholder: '请输入入库数量'
-          }
-        },
-        {
-          key: 'costPrice',
-          type: 'number',
-          label: '进价',
-          props: {
-            placeholder: '请输入进价'
+            'show-word-limit': true,
+            maxlength: 20,
+            placeholder: '请输入标签CODE'
           }
         },
         {
@@ -232,8 +212,7 @@
             size: 'default'
           }
         }
-      ],
-      formParams: {}
+      ]
     }
   }))
 
@@ -278,7 +257,6 @@
   ])
 
   onMounted(()=>{
-    enumStore.fetchIngredientEnum()
   })
 
 </script>

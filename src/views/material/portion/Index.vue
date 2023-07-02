@@ -31,6 +31,7 @@
 </template>
 <script setup>
   import { ref, reactive, onMounted } from 'vue'
+  import { ON_SHELF_STATUS } from '@/const/Base'
   import { confirm, errorMsg } from '@/utils/interaction'
 
   import AppMain from '@/components/AppMain' // 组件引入
@@ -53,7 +54,7 @@
 
   const enumStore = useEnumStore()
 
-  const { setItem, fetchList, removeItem } = useForage('material', 'inventory')
+  const { setItem, fetchList, removeItem } = useForage('material', 'portion', 'ingredientCode')
 
   // 表格数据 分页器控制对象 搜索 重置搜索条件
   const { tableData, pagination, handleSearch, handleReset } = usePage(fetchList)
@@ -68,6 +69,15 @@
         props: {
           options: enumStore.ingredientEnum,
           placeholder: '请选择食材'
+        }
+      },
+      {
+        key: 'onShelfStatus',
+        type: 'select',
+        label: '上架状态',
+        props: {
+          options: ON_SHELF_STATUS,
+          placeholder: '请选择上架状态'
         }
       }
     ],
@@ -102,17 +112,21 @@
       label: '食材名称'
     },
     {
-      key: 'weight',
-      label: '入库基数',
-      toolTip: '入库的食材的数量，以斤或者箱等为单位'
+      key: 'retailPrice',
+      label: '零售价'
     },
     {
-      key: 'costPrice',
-      label: '进价'
+      key: 'retailWeight',
+      label: '单份净重'
     },
     {
-      key: 'ingredientCode',
-      label: '食材CODE'
+      key: 'restrictedQuantity',
+      label: '可售数量',
+      tooltip: '默认为99，即不对每日预定菜的分量作限制',
+    },
+    {
+      key: 'onShelfStatus',
+      label: '上架状态'
     },
     {
       key: 'remark',
@@ -163,9 +177,10 @@
   }).attrs)
 
   const ingredientChange = (val) => {
-    const { ingredientCode, ingredientName } = enumStore.ingredientEnumMap[val]
+    const { ingredientCode, ingredientName, ingredientTags } = enumStore.ingredientEnumMap[val]
     formDialog.formAttrs.dataFormParams.ingredientName = ingredientName 
     formDialog.formAttrs.dataFormParams.ingredientCode = ingredientCode
+    formDialog.formAttrs.dataFormParams.ingredientTags = ingredientTags
   }
   const formDialog = reactive(useFormDialog({
     formAttrs: {
@@ -183,20 +198,39 @@
           }
         },
         {
-          key: 'weight',
-          type: 'number',
-          label: '入库基数',
-          toolTip: '入库的食材的数量，以斤或者箱等为单位',
+          key: 'ingredientTags',
+          type: 'select',
+          label: '食材Tag',
           props: {
-            placeholder: '请输入入库数量'
+            options: enumStore.ingredientTagEnum,
+            placeholder: '请选择食材Tag',
+            multiple: true,
+            disabled: true
           }
         },
         {
-          key: 'costPrice',
-          type: 'number',
-          label: '进价',
+          key: 'retailPrice',
+          type: 'input',
+          label: '零售价'
+        },
+        {
+          key: 'retailWeight',
+          type: 'input',
+          label: '单份净重(g)'
+        },
+        {
+          key: 'restrictedQuantity',
+          type: 'input',
+          label: '可售数量',
+          tooltip: '默认为99，即不对每日预定菜的分量作限制',
+        },
+        {
+          key: 'onShelfStatus',
+          type: 'select',
+          label: '上架状态',
           props: {
-            placeholder: '请输入进价'
+            options: ON_SHELF_STATUS,
+            placeholder: '请选择上架状态'
           }
         },
         {
@@ -233,7 +267,8 @@
           }
         }
       ],
-      formParams: {}
+      formParams: {
+      },
     }
   }))
 
@@ -259,7 +294,12 @@
    * 切换formDialog弹窗开启状态
    */
   const toggleFormDialogVisible = (ref) => {
-    formDialog.formAttrs.dataFormParams = {}
+    formDialog.formAttrs.dataFormParams = {
+      onShelfStatus: 'onShelf',
+      retailPrice: 0,
+      retailWeight: 0,
+      restrictedQuantity: 99
+    }
     ref?.resetFields()
     formDialog.toggleDialogVisible()
   }
@@ -279,6 +319,7 @@
 
   onMounted(()=>{
     enumStore.fetchIngredientEnum()
+    enumStore.fetchIngredientTagEnum()
   })
 
 </script>
