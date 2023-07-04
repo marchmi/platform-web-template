@@ -24,7 +24,14 @@
       <m-form-dialog
         v-bind="formDialog"
         v-model:dialog-visible="formDialog.dialogVisible"
-      > 
+      >
+        <template #material="{ formParams }">
+          <m-edit-table
+            :table-data="formParams.material"
+            :table-column="editTableColumn"
+          >
+          </m-edit-table>
+        </template>
       </m-form-dialog>
     </template>
   </app-main>
@@ -38,6 +45,7 @@
   import MFilter from '@/components/MFilter'
   import MOperation from '@/components/MOperation'
   import MTable from '@/components/MTable'
+  import MEditTable from '@/components/MEditTable'
   import MPagination from '@/components/MPagination'
   import MFormDialog from '@/components/MFormDialog'
 
@@ -63,12 +71,11 @@
   const filterAttrs = useFilter({
     formFields: [
       {
-        key: 'ingredientCode',
-        type: 'select',
-        label: '食材',
+        key: 'dishName',
+        type: 'input',
+        label: '餐品名称',
         props: {
-          options: enumStore.ingredientEnum,
-          placeholder: '请选择食材'
+          placeholder: '请输入餐品名称搜索'
         }
       },
       {
@@ -108,21 +115,16 @@
       label: 'UUID'
     },
     {
-      key: 'ingredientName',
-      label: '食材名称'
+      key: 'dishName',
+      label: '餐品名称'
+    },
+    {
+      key: 'dishCode',
+      label: '餐品Code'
     },
     {
       key: 'retailPrice',
-      label: '零售价'
-    },
-    {
-      key: 'retailWeight',
-      label: '单份净重'
-    },
-    {
-      key: 'restrictedQuantity',
-      label: '可售数量',
-      tooltip: '默认为99，即不对每日预定菜的分量作限制',
+      label: '售价'
     },
     {
       key: 'onShelfStatus',
@@ -186,43 +188,43 @@
     formAttrs: {
       formFields: [
         {
-          key: 'ingredientCode',
-          type: 'select',
-          label: '食材',
+          key: 'dishName',
+          type: 'input',
+          label: '餐品名称',
           props: {
-            options: enumStore.ingredientEnum,
-            placeholder: '请选择食材'
-          },
-          events: {
-            change: ingredientChange
+            placeholder: '请输入餐品名称',
+            'show-word-limit': true,
+            maxlength: 10
           }
         },
         {
-          key: 'ingredientTags',
-          type: 'select',
-          label: '食材Tag',
+          key: 'dishCode',
+          type: 'input',
+          label: '餐品Code',
           props: {
-            options: enumStore.ingredientTagEnum,
-            placeholder: '请选择食材Tag',
-            multiple: true,
-            disabled: true
+            placeholder: '请输入餐品Code',
+            'show-word-limit': true,
+            maxlength: 20
           }
+        },
+        {
+          key: 'dishTags',
+          type: 'select',
+          label: '餐品Tag',
+          props: {
+            options: enumStore.dishTagEnum,
+            placeholder: '请选择餐品Tag',
+            multiple: true
+          }
+        },
+        {
+          key: 'material',
+          label: '用料信息'
         },
         {
           key: 'retailPrice',
           type: 'input',
           label: '零售价'
-        },
-        {
-          key: 'retailWeight',
-          type: 'input',
-          label: '单份净重(g)'
-        },
-        {
-          key: 'restrictedQuantity',
-          type: 'input',
-          label: '可售数量',
-          tooltip: '默认为99，即不对每日预定菜的分量作限制',
         },
         {
           key: 'onShelfStatus',
@@ -297,8 +299,7 @@
     formDialog.formAttrs.dataFormParams = {
       onShelfStatus: 'onShelf',
       retailPrice: 0,
-      retailWeight: 0,
-      restrictedQuantity: 99
+      material: [{}]
     }
     ref?.resetFields()
     formDialog.toggleDialogVisible()
@@ -317,9 +318,39 @@
     }
   ])
 
+  const quantityChange = (val, row) => {
+    row.retailWeight = val
+  }
+
+  const editTableColumn = reactive([
+    {
+      key: 'ingredientCode',
+      type: 'select',
+      label: '食材',
+      minWidth: 80,
+      props: {
+        options: enumStore.ingredientEnum
+      }
+    },
+    {
+      key: 'retailPrice',
+      label: '零售价'
+    },
+    {
+      key: 'retailWeight',
+      label: '单份净重(g)'
+    },
+    {
+      key: 'quantity',
+      type: 'input',
+      input: quantityChange,
+      label: '用量(份)'
+    }
+  ])
+
   onMounted(()=>{
     enumStore.fetchIngredientEnum()
-    enumStore.fetchIngredientTagEnum()
+    enumStore.fetchDishTagEnum()
   })
 
 </script>

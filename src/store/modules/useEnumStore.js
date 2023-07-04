@@ -7,6 +7,7 @@ const useEnumStore = defineStore('enumStore', {
       ingredientEnum: [], // 食材信息
       ingredientEnumMap: {}, // 食材信息Map
       ingredientTagEnum: [], // 食材Tag
+      dishTagEnum: [], // 菜品Tag
     }
   },
   getters: {},
@@ -42,7 +43,24 @@ const useEnumStore = defineStore('enumStore', {
           this.ingredientTagEnum.push({ code: tag.tagCode, name: tag.tagName })
         })
       })
+    },
+
+    /**
+     * 获取食材Tag信息
+     */
+    fetchDishTagEnum() {
+      if(this.dishTagEnum.length) {
+        return
+      }
+      const { fetchList } = useForage('dish', 'tag')
+      fetchList().then(res=>{
+        this.dishTagEnum.length = 0
+        res.list.forEach(tag=>{
+          this.dishTagEnum.push({ code: tag.tagCode, name: tag.tagName })
+        })
+      })
     }
+
   }
 })
 
